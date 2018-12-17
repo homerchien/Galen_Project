@@ -1,0 +1,26 @@
+@objects
+    card        					[data-section-type="four_images"]
+    	container					[class~="container"]
+	        row                     [class~="row"]
+	            top 		        [class~="four-images__top"]
+	            	top_left 	    [class~="four-images__top-left"]
+	            		img-* 		[class="four-images__img"]
+	            	top_right		[class="four-images__top-right"]
+	            		img			[class="four-images__img"]
+	        	bottom          	[class~="four-images__bottom"]
+	        		img				[class="four-images__img"]
+	            
+
+@on *
+	@set
+		# element set
+		ele_card 					${"card"}
+		ele_container 				${"card.container"}
+		ele_row 					${"card.container.row"}
+		ele_top						${"card.container.row.top"}
+		ele_top_left				${"card.container.row.top.top_left"}
+		ele_only_top_left_image		${"card.container.row.top.top_left.img-#"}
+		ele_only_top_right_image	${"card.container.row.top.top_right.img"}
+		ele_bottom					${"card.container.row.bottom"}
+		ele_only_bottom_image		${"card.container.row.bottom.img"}
+

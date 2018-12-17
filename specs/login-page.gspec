@@ -1,0 +1,16 @@
+@import common.gspec
+
+@objects
+	login-form       			[id="loginForm"]
+		input-name          	[id="userName"]
+		input-passwd          	[id="password"]
+
+= Login =
+	login-form.input-name:
+		inside login-form
+		above login-form.input-passwd 50 to 70 px
+
+	login-form.input-passwd:
+		inside login-form
+
+	

@@ -1,0 +1,85 @@
+@import common.gspec
+@import data/feature-columns-data.gspec
+@script properties/feature-columns.properties.js
+
+= Feature Columns Card =
+    = Skeleton =
+        ${ele_container}:
+            width ${container_width} 
+            centered all inside ${ele_card} 
+        global:
+            count any ${ele_only_items} is 3
+            
+    = Text =
+        ${ele_title}:
+            text is "${conf_settings_title}"
+            inside ${ele_row} ${title_bottom_gap} bottom
+            css font-size is "${title_size}"
+            css font-family is "${title_front_family}"
+            css color is "${title_color}"
+        # ${ele_items_title}:
+
+        
+    = Items =
+        = Skeleton =
+            @on *
+                | every ${ele_only_items} is inside ${ele_product_row}
+
+            @on mobile
+                | ${ele_only_items} are aligned vertically above each other with ~32px margin
+                | every ${ele_only_items} has width 385px
+                | every ${ele_only_items} has height 503px
+                
+
+            @on desktop
+                | ${ele_only_items} are aligned horizontally next to each other with 0px margin
+                | every ${ele_only_items} has width 368px
+                | every ${ele_only_items} has height 482px
+
+        = Image =
+            @on mobile
+                | every ${ele_only_items_image} has width 370px
+                | every ${ele_only_items_image} has height 370px
+                
+
+            @on desktop
+                | every ${ele_only_items_image} has width 344px
+                | every ${ele_only_items_image} has height 344px
+        = Title =
+            @on mobile
+                | every ${ele_only_items_title} has width 370px
+                | every ${ele_only_items_title} has height 27px
+                
+
+            @on desktop
+                | every ${ele_only_items_title} has width 344px
+                | every ${ele_only_items_title} has height 27px
+
+            ${ele_only_items_title}:
+                text is "${conf_block_title}"
+                css font-size is "${block_title_size}"
+                css font-family is "${block_title_front_family}"
+                css color is "${block_title_color}"
+                css text-align is "${conf_settings_align_text}"
+
+        = Describe =
+            @on mobile
+                | every ${ele_only_items_text} has width 370px
+                | every ${ele_only_items_text} has height 63px
+                
+
+            @on desktop
+                | every ${ele_only_items_text} has width 344px
+                | every ${ele_only_items_text} has height 63px
+
+            ${ele_only_items_text}:
+                text is "${conf_block_text}"
+                css font-size is "${block_text_size}"
+                css font-family is "${block_text_front_family}"
+                css color is "${block_text_color}"
+                css text-align is "${conf_settings_align_text}"
+                
+
+        
+
+

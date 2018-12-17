@@ -1,0 +1,33 @@
+@objects
+    card        					[data-section-type="collection_list_plus"]
+    	container					[class~="container"]
+	        row                     [class~="row"]
+	            card_title          [class~="common-card-title"]
+	        collection_row          [class~="common__collection-row"]
+	            desktopItem-*       [class="product-snippet d-none d-md-block"]
+	            mobileItem-*        [class="product-snippet d-md-none"]
+
+@on *
+	@set
+		# varible set
+		title_front_family \"Work Sans\"
+		title_color rgba(61, 66, 70, 1)
+		# element set
+		ele_card 			${"card"}
+		ele_container 		${"card.container"}
+		ele_row 			${"card.container.row"}
+		ele_title			${"card.container.row.card_title"}
+		ele_collection_row	${"card.container.collection_row"}
+
+@on desktop
+	@set
+		title_size 34px 		
+		title_bottom_gap 40px 	
+		ele_only_items ${"card.container.collection_row.desktopItem-#"}		
+
+@on mobile
+    @set 
+    	title_size 22px
+    	title_bottom_gap 20px
+    	ele_only_items ${"card.container.collection_row.mobileItem-#"}	
+

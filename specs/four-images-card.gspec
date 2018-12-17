@@ -1,0 +1,58 @@
+@import common.gspec
+@import data/four-images-data.gspec
+@script properties/four-images.properties.js
+
+= Four Images Card =
+    = Skeleton =
+        ${ele_container}:
+            width ${container_width} 
+            centered horizontally inside ${ele_card} 
+        @on mobile
+            ${ele_top}:
+                width 370px
+                height 367px
+        @on desktop
+            ${ele_top}:
+                width 1074px
+                height 708px
+        
+        ${ele_top_left}:
+            aligned horizontally top ${ele_only_top_right_image}
+            aligned vertically left ${ele_bottom}
+
+    = Image =
+        = Left Image =
+            @on mobile
+                | ${ele_only_top_left_image} are aligned vertically above each other with ~15px margin
+                | every ${ele_only_top_left_image} has width 177px
+                | every ${ele_only_top_left_image} has height 177px
+               
+            @on desktop
+                | ${ele_only_top_left_image} are aligned horizontally next to each other with ~23px margin
+                | every ${ele_only_top_left_image} has width 342px
+                | every ${ele_only_top_left_image} has height 342px
+
+        = Right Image =
+            @on mobile
+                ${ele_only_top_right_image}:
+                    width 177px
+                    height 366px
+               
+            @on desktop
+                ${ele_only_top_right_image}:
+                    width 342px
+                    height 708px
+
+        = Bottom Image =
+            @on mobile
+                ${ele_only_bottom_image}:
+                    width 370px
+                    height 178px
+               
+            @on desktop
+                ${ele_only_bottom_image}:
+                    width 708px
+                    height 342px
+                
+
+

@@ -1,0 +1,43 @@
+@import ../rules.gspec
+@import ../galen-extras/galen-extras-rules.gspec
+
+@objects
+    header                          [data-section-type="header"]
+        container-desktop           [class="container header__icon-container d-none d-md-block"]
+            logo-block              a[class="header__logo d-flex align-items-center justify-content-center"]
+            select-country-block    div[class="col-3 d-flex flex-row-reverse align-items-center"]
+        container-mobile            [class="container header__icon-container d-md-none"]
+            logo-block              a[class="header__logo d-flex align-items-center justify-content-center"]
+            select-country-block    div[class="col-3 d-flex flex-row-reverse align-items-center"]
+
+@groups
+    (menu_item, menu_items)     menu.item-*
+    skeleton_elements           header, menu, content, footer
+    skeleton_element            &skeleton_elements
+
+@set
+    minimal             -1 to 1px
+    tiny                0 to 5px
+    small               5 to 15px
+    normal              15 to 25px
+    medium              25 to 35px
+
+    container_width     1080px
+
+@on mobile
+    @set
+        container_width     400px
+
+    # header_height       ~ 70px
+    # menu_height         ~ 64px
+    # menu_item_height    ${menu_height}
+    # footer_height       ~ 150px
+
+    # header_mobile_text  Sample Website
+    # header_desktop_text Sample Website for Galen Framework
+
+    # content_vertical_margin 20 to 45px
+    # content_horizontal_margin ~ 20px
+
+    # form_textfield_height   34px
+

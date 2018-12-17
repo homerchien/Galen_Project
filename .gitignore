@@ -1,0 +1,11 @@
+logs/
+.idea/
+*.log
+*.pyc
+*.png
+*.html
+*.xml
+*.iml
+.noseids
+.coverage
+reports/

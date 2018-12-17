@@ -1,0 +1,70 @@
+{
+    "browserstack_iPhone8Plus": {
+        "deviceName": "iPhone 8 Plus",
+        "tags": [ "mobile" ],
+        "gridSettings": {
+            "desiredCapabilities": {
+                "os_version": "11.0",
+                "device": "iPhone 8 Plus",
+                "real_mobile": "true",
+                "browserstack.local": "false"
+            }
+        }
+    },
+    "browserstack_SamsungGalaxyS9": {
+        "deviceName": "Samsung Galaxy S9",
+        "tags": [ "mobile" ],
+        "gridSettings": {
+            "desiredCapabilities": {
+                "os_version": "8.0",
+                "device": "Samsung Galaxy S9",
+                "real_mobile": "true",
+                "browserstack.local": "false"
+            }
+        }
+    },
+    "browserstack_Yosemite": {
+        "deviceName": "Mac Yosemite", 
+        "tags": [ "desktop" ], 
+        "gridSettings": {
+            "size": "1200x768",
+            "desiredCapabilities": {
+                "os": "OS X",
+                "os_version": "Yosemite",
+                "browser": "Chrome",
+                "browser_version": "71.0",
+                "browserstack.local": "false",
+                "browserstack.selenium_version": "3.1.0"
+            }
+        }
+    },
+    "browserstack_Sierra": {
+        "deviceName": "Mac Sierra", 
+        "tags": [ "desktop" ], 
+        "gridSettings": {
+            "size": "1200x768",
+            "desiredCapabilities": {
+                "os": "OS X",
+                "os_version": "Sierra",
+                "browser": "Firefox",
+                "browser_version": "63.0",
+                "browserstack.local": "false"
+            }
+        }
+    },
+    "browserstack_Windows10": {
+        "deviceName": "Windows10", 
+        "tags": [ "desktop" ], 
+        "gridSettings": {
+            "size": "1200x768",
+            "desiredCapabilities": {
+                "os": "Windows",
+                "os_version": "10",
+                "browser": "Chrome",
+                "browser_version": "69.0",
+                "browserstack.local": "false",
+                "browserstack.selenium_version": "3.1.0"
+            }
+        }
+    }
+}

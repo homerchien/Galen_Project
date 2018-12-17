@@ -1,0 +1,21 @@
+@objects
+    card        					[data-section-type="gallery"]
+    	image_bar					[class~="image-bar"]
+	        item-*                  [class~="grid__item"]
+	        	hero				[class~="hero"]
+	            title				[class~="mega-title]
+
+@on *
+	@set
+		# element set
+		ele_card 					${"card"}
+		ele_image_bar 				${"card.image_bar"}
+		ele_only_items				${"card.image_bar.item-#"}
+		ele_only_items_hero			${"card.image_bar.item-#.hero"}
+		ele_only_items_title		${"card.container.item-*.title"}
+		num_of_ele_only_items		${count("card.image_bar.item-#")}
+		index  						${num_of_ele_only_items-1}
+
+
+
+

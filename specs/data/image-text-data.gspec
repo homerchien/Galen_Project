@@ -1,0 +1,38 @@
+@script ../galen-extras/custom-javascript-functions.js
+
+@objects
+    card        					[data-section-type="image_text"]
+    	container					[class~="container"]
+	        row                     [class~="row"]
+	            image 		        [class~="image-text__image"]
+	            text 		        [class~="image-text__text"]
+	            	text_title 		[class~="image-text__title"]
+	            	text_desc 		[class~="image-text__desc"]
+	            	text_btn		[class~="image-text__btn"]
+	            
+
+@on *
+	@set
+		# element set
+		ele_card 					${"card"}
+		ele_container 				${"card.container"}
+		ele_row 					${"card.container.row"}
+		ele_image					${"card.container.row.image"}
+		ele_text					${"card.container.row.text"}
+		ele_text_title				${"card.container.row.text.text_title"}
+		ele_text_desc				${"card.container.row.text.text_desc"}
+		ele_text_btn				${"card.container.row.text.text_btn"}
+
+		css_check_ele_text_title    {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"left","font-weight":"400"}
+
+
+# @on mobile
+# 	@set
+# 		# css_check_ele_text_title    ${allEven("ele_text_title","ele_text_desc")}
+# 		# css_check_ele_text_title    ${resetJson(this.css_check_ele_text_title,'{"text-align":"right"}')}
+# 		css_check_ele_text_title    ${resetJson({"text-align":"left","font-family":"Work Sans"},{"text-align":"right"})}
+
+
+						
+		
+		

@@ -1,0 +1,45 @@
+@objects
+    card 	        				[data-section-type="feature_columns"]
+    	container					[class~="container"]
+	        row                     [class~="row"]
+	            card_title          [class~="common-card-title"]
+	        product_row          	[class~="common__product-row"]
+	            item-*       		[class~="common__product-gap"]
+					items_image		[class~="block__image"]
+					items_title 	[class~="block__title"]
+					items_text 		[class~="block__text"]
+	# items_image-*	 				[data-section-type="feature_columns"] [class~="block__image"]
+	# items_title-* 				[data-section-type="feature_columns"] [class~="block__title"]
+	# items_text-* 					[data-section-type="feature_columns"] [class~="block__text"]
+	            
+@on *
+	@set
+		# varible set
+		title_front_family \"Work Sans\"
+		title_color rgba(61, 66, 70, 1)
+		# element set
+		ele_card 				${"card"}
+		ele_container 			${"card.container"}
+		ele_row 				${"card.container.row"}
+		ele_title				${"card.container.row.card_title"}
+		ele_product_row			${"card.container.product_row"}
+		ele_only_items 			${"card.container.product_row.item-#"}	
+		ele_only_items_image 	${"card.container.product_row.item-*.items_image"}	
+		ele_only_items_title 	${"card.container.product_row.item-*.items_title"}	
+		ele_only_items_text 	${"card.container.product_row.item-*.items_text"}	
+		block_title_size 18px 
+		block_title_color rgba(61, 66, 70, 1)
+		block_title_front_family \"Work Sans\"
+		block_text_size 14px 
+		block_text_color rgba(105, 114, 123, 1)
+		block_text_front_family \"Work Sans\"
+ 
+@on desktop
+	@set
+		title_size 34px 		
+		title_bottom_gap 40px
+
+@on mobile
+    @set 
+    	title_size 22px		
+		title_bottom_gap 20px 
