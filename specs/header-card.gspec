@@ -1,0 +1,47 @@
+@import data/common-data.gspec
+@import data/header-data.gspec
+
+= Header =
+#    @on mobile
+#        header:
+#            height ~94px
+#            centered horizontally inside screen
+#        header.container-mobile.logo-block:
+#            inside header ~115px left, 0 to 50px top bottom
+#            width ~170px
+#            height ~53px
+#            text is "homer"
+#        header.container-mobile.select-country-block:
+#            left-of header.container-mobile.logo-block ~-285px
+
+    @on desktop
+        ${ele_card}:
+            height ~144px
+            centered horizontally inside screen
+        ${ele_desktop_logo_text}:
+            inside ${ele_card} ~337px left, 30 to 50px top bottom
+            width ~525px
+            height ~63px
+            text is "homer"
+        ${ele_desktop_logo_text}:
+            inside ${ele_card} ~337px left, 30 to 50px top bottom
+            width ~525px
+            height ~63px
+
+
+# = Menu =
+#     @on *
+#         | amount of visible &menu_items should be > 3
+#         | every &menu_item is inside menu and has height ${menu_height}
+#         | first &menu_item is inside menu 0px top left
+
+#     @on desktop, tablet
+#         | &menu_items are aligned horizontally next to each other
+#         | every &menu_item is aligned horizontally all menu
+#     @on mobile
+#         | &menu_items are rendered in 2 column table layout
+
+
+# = Footer =
+#     footer:
+#         height ${footer_height}

@@ -26,11 +26,12 @@
 		css_check_ele_text_title    {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"left","font-weight":"400"}
 
 
-# @on mobile
-# 	@set
-# 		# css_check_ele_text_title    ${allEven("ele_text_title","ele_text_desc")}
-# 		# css_check_ele_text_title    ${resetJson(this.css_check_ele_text_title,'{"text-align":"right"}')}
-# 		css_check_ele_text_title    ${resetJson({"text-align":"left","font-family":"Work Sans"},{"text-align":"right"})}
+@on mobile
+ 	@set
+	 	css_check_ele_text_title    {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"center","font-weight":"400"}
+ 		# css_check_ele_text_title    ${allEven("ele_text_title","ele_text_desc")}
+ 		# css_check_ele_text_title    ${resetJson(this.css_check_ele_text_title,'{"text-align":"right"}')}
+ 		# css_check_ele_text_title    ${resetJson({"text-align":"left","font-family":"Work Sans"},{"text-align":"right"})}
 
 
 						

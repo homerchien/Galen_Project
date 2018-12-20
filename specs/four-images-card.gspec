@@ -1,4 +1,4 @@
-@import common.gspec
+@import data/common-data.gspec
 @import data/four-images-data.gspec
 @script properties/four-images.properties.js
 
@@ -26,11 +26,13 @@
                 | ${ele_only_top_left_image} are aligned vertically above each other with ~15px margin
                 | every ${ele_only_top_left_image} has width 177px
                 | every ${ele_only_top_left_image} has height 177px
+                | ${ele_only_top_left_image} should be squared
                
             @on desktop
                 | ${ele_only_top_left_image} are aligned horizontally next to each other with ~23px margin
                 | every ${ele_only_top_left_image} has width 342px
                 | every ${ele_only_top_left_image} has height 342px
+                | ${ele_only_top_left_image} should be squared
 
         = Right Image =
             @on mobile

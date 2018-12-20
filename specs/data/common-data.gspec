@@ -1,20 +1,6 @@
 @import ../rules.gspec
 @import ../galen-extras/galen-extras-rules.gspec
 
-@objects
-    header                          [data-section-type="header"]
-        container-desktop           [class="container header__icon-container d-none d-md-block"]
-            logo-block              a[class="header__logo d-flex align-items-center justify-content-center"]
-            select-country-block    div[class="col-3 d-flex flex-row-reverse align-items-center"]
-        container-mobile            [class="container header__icon-container d-md-none"]
-            logo-block              a[class="header__logo d-flex align-items-center justify-content-center"]
-            select-country-block    div[class="col-3 d-flex flex-row-reverse align-items-center"]
-
-@groups
-    (menu_item, menu_items)     menu.item-*
-    skeleton_elements           header, menu, content, footer
-    skeleton_element            &skeleton_elements
-
 @set
     minimal             -1 to 1px
     tiny                0 to 5px
@@ -23,6 +9,10 @@
     medium              25 to 35px
 
     container_width     1080px
+    container_width     1080px
+    container_width     1080px
+    container_width     1080px
+    
 
 @on mobile
     @set

@@ -1,4 +1,4 @@
-@import common.gspec
+@import data/common-data.gspec
 @import data/feature-columns-data.gspec
 @script properties/feature-columns.properties.js
 

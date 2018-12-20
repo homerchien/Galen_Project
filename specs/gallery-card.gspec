@@ -1,4 +1,4 @@
-@import common.gspec
+@import data/common-data.gspec
 @import data/gallery-data.gspec
 @script properties/gallery.properties.js
 

@@ -1,0 +1,42 @@
+@objects
+    card                                [data-section-type="header"]
+        announce                        a[class~="dj_skin_header_notice"]
+        header                          [class~="dj_skin_header_logo"]
+            container_desktop           [class~="d-none"]
+                left_block              [class="row header"] > div:nth-child(1)
+                    currency_icon       [class="header__currency"]
+                center_block            [class="row header"] > div:nth-child(2)
+                    logo_text           a[class~="header__logo"]
+                right_block             [class="row header"] > div:nth-child(3)
+                    cart_icon           a[href="/cart"]
+                    account_icon         div[class~="header__account"]
+                    search_icon         div[class~="header__search"]
+#            container-mobile            [class~="d-md-none"]
+#                center-block              a[class~="header__logo"]
+#                left-block              div[class~="header__currency"]
+#                right-block              div[class~="flex-row-reverse"]
+#                    cart-icon           a[href="/cart"]
+#                    acount-icon         div[class~="header__account"]
+#                    search-icon         div[href="/search"]
+#        navigation-pc                   [id="navigation-pc-menu"]
+#            row                         [class="row"]
+#                items-*                 [div]
+
+@on *
+	@set
+		# element set
+		ele_card 					${"card"}
+		ele_announce 				${"card.announce"}
+		ele_header				    ${"card.header"}
+		ele_container_desktop		${"card.header.container_desktop"}
+		ele_desktop_left_block		${"card.header.container_desktop.left_block"}
+		ele_desktop_currency_icon	${"card.header.container_desktop.left_block.currency_icon"}
+		ele_desktop_center_block	${"card.header.container_desktop.center_block"}
+		ele_desktop_logo_text	    ${"card.header.container_desktop.center_block.logo_text"}
+		ele_desktop_right_block		${"card.header.container_desktop.right_block"}
+		ele_desktop_cart_icon		${"card.header.container_desktop.right_block.cart_icon"}
+		ele_desktop_account_icon	${"card.header.container_desktop.right_block.account_icon"}
+		ele_desktop_search_icon		${"card.header.container_desktop.right_block.search_icon"}
+
+		
+

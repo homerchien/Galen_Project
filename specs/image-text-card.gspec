@@ -1,4 +1,4 @@
-@import common.gspec
+@import data/common-data.gspec
 @import data/image-text-data.gspec
 @script properties/image-text-properties.js
 

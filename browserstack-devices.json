@@ -27,12 +27,13 @@
         "deviceName": "Mac Yosemite", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1200x768",
+            "size": "1440×900",
             "desiredCapabilities": {
                 "os": "OS X",
                 "os_version": "Yosemite",
                 "browser": "Chrome",
                 "browser_version": "71.0",
+                "resolution": "1920x1080",
                 "browserstack.local": "false",
                 "browserstack.selenium_version": "3.1.0"
             }
@@ -42,12 +43,13 @@
         "deviceName": "Mac Sierra", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1200x768",
+            "size": "1440×900",
             "desiredCapabilities": {
                 "os": "OS X",
                 "os_version": "Sierra",
                 "browser": "Firefox",
                 "browser_version": "63.0",
+                "resolution": "1920x1080",
                 "browserstack.local": "false"
             }
         }
@@ -56,14 +58,31 @@
         "deviceName": "Windows10", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1200x768",
+            "size": "1440×900",
             "desiredCapabilities": {
                 "os": "Windows",
                 "os_version": "10",
                 "browser": "Chrome",
                 "browser_version": "69.0",
+                "resolution": "1920x1080",
                 "browserstack.local": "false",
                 "browserstack.selenium_version": "3.1.0"
+            }
+        }
+    },
+    "browserstack_Windows7": {
+        "deviceName": "Windows7", 
+        "tags": [ "desktop" ], 
+        "gridSettings": {
+            "size": "1440×900",
+            "desiredCapabilities": {
+                "os": "Windows",
+                "os_version": "7",
+                "browser": "IE",
+                "browser_version": "8.0",
+                "resolution": "1920x1080",
+                "browserstack.local": "false",
+                "browserstack.selenium_version": "3.5.2"
             }
         }
     }

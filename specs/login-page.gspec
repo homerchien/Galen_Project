@@ -1,4 +1,4 @@
-@import common.gspec
+@import data/common-data.gspec
 
 @objects
 	login-form       			[id="loginForm"]

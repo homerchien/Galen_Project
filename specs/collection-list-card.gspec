@@ -1,4 +1,4 @@
-@import common.gspec
+@import data/common-data.gspec
 @import data/collection-list-data.gspec
 @script properties/collection-list.properties.js
 

@@ -19,7 +19,7 @@ $galen.registerDevice("desktop", inSingleBrowser("desktop emulation", "1200x768"
 // browserstack test
 // $galen.registerDevice("desktop", inSeleniumGrid("http://" + System.getProperty("browserstack.username") + ":" + System.getProperty("browserstack.key") + "@hub.browserstack.com/wd/hub",
 //     "desktop real machine", ["desktop"], {
-//     	"size": "1200x768",
+//     	"size": "1440×900",
 //         desiredCapabilities: {
 // 			"browser": "Chrome",
 // 			"browser_version": "43.0",
@@ -43,7 +43,7 @@ $galen.registerDevice("desktop", inSingleBrowser("desktop emulation", "1200x768"
 // saucelabs test
 // $galen.registerDevice("desktop", inSeleniumGrid("http://" + System.getProperty("saucelabs.username") + ":" + System.getProperty("saucelabs.key") +"@ondemand.saucelabs.com:80/wd/hub",
 //     "desktop real machine", ["desktop"], {
-//     	"size": "1200x768",
+//     	"size": "1440×900",
 //         desiredCapabilities: {
 //         	"browserName": "chrome",
 //         	"platform": "macOS 10.13",

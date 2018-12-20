@@ -11,6 +11,7 @@ this.allEven = function (pattern,aaa) {
     return parameters;
 };
 
+// unfinished
 this.resetJson = function (resetJson,targetJson) {
 	System.out.println(JSON.parse(resetJson));
 	System.out.println(JSON.parse(targetJson));
