@@ -207,7 +207,7 @@ rule("%{objectListA} %{verb: is|has|fulfil} %{spec} %{objectListB} by one-to-one
 });
 
 // eg.
-//    | the text of ${ele_text_desc} fulfil common css rules follow ${text_title_list_check}
+//    | ${ele_text_desc} fulfil common css rules follow by ${text_title_list_check}
 rule("%{objectPattern} fulfil common css rules follow by %{rulesValueJson}", function(objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     var valueJson = JSON.parse(parameters.rulesValueJson);

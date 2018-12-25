@@ -6,12 +6,13 @@ var TEST_USER = {
     password: "test123"
 };
 
+
 $galen.settings.website = "https://homer.myshoplaza.com";
 
 
 // local test
-$galen.registerDevice("mobile", inSingleBrowser("mobile emulation", "375x812", ["mobile"]));
-$galen.registerDevice("desktop", inSingleBrowser("desktop emulation", "1200x768", ["desktop"]));
+$galen.registerDevice("mobile", inSingleBrowser("mobile emulation", "414x736", ["mobile"]));
+$galen.registerDevice("desktop", inSingleBrowser("desktop emulation", "1440x900", ["desktop"]));
 
 // Grid test
 // $galen.registerDevices(loadGridDevices("browserstack-devices.json", "http://" + System.getProperty("browserstack.username") + ":" + System.getProperty("browserstack.key") + "@hub.browserstack.com/wd/hub"));

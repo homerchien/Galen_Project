@@ -27,7 +27,7 @@
         "deviceName": "Mac Yosemite", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1440×900",
+            "size": "1200x768",
             "desiredCapabilities": {
                 "os": "OS X",
                 "os_version": "Yosemite",
@@ -43,7 +43,7 @@
         "deviceName": "Mac Sierra", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1440×900",
+            "size": "1200x768",
             "desiredCapabilities": {
                 "os": "OS X",
                 "os_version": "Sierra",
@@ -58,7 +58,7 @@
         "deviceName": "Windows10", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1440×900",
+            "size": "1200x768",
             "desiredCapabilities": {
                 "os": "Windows",
                 "os_version": "10",
@@ -74,7 +74,7 @@
         "deviceName": "Windows7", 
         "tags": [ "desktop" ], 
         "gridSettings": {
-            "size": "1440×900",
+            "size": "1200x768",
             "desiredCapabilities": {
                 "os": "Windows",
                 "os_version": "7",

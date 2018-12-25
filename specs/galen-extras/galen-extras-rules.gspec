@@ -580,4 +580,43 @@
       @on ${activeTags}
           @ruleBody
 
+# By Homer
+# eg.
+#   | message-* should be inside of main_container and take 70 % of its width
+@rule %{itemPattern} should be inside of %{parentItem} and take %{percentWidth}% of its %{sizeSide: width|height}
+    ${itemPattern}:
+        inside ${parentItem}
+        width ${percentWidth} % of ${parentItem}/${sizeSide}
 
+
+# eg.
+#   | the all padding of message-* is 10 px size
+@rule the %{style: all|vertical|horizontal|top|bottom|left|right} padding of %{itemPattern} is %{size} size
+    ${itemPattern}:
+        @if ${style == 'all'}
+            css padding-left is "${size}"
+            css padding-right is "${size}"
+            css padding-top is "${size}"
+            css padding-bottom is "${size}"
+        @elseif ${style == 'vertical'}
+            css padding-top is "${size}"
+            css padding-bottom is "${size}"
+        @elseif ${style == 'horizontal'}
+            css padding-left is "${size}"
+            css padding-right is "${size}"
+        @elseif ${style == 'top'}
+            css padding-top is "${size}"
+        @elseif ${style == 'bottom'}
+            css padding-bottom is "${size}"
+        @elseif ${style == 'left'}
+            css padding-left is "${size}"
+        @elseif ${style == 'right'}
+            css padding-right is "${size}"
+        
+# eg.
+#   | items-* are aligned horizontally centered next to each other with 40px margin
+@rule %{objectPattern} are aligned horizontally centered next to each other with %{margin} margin
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned horizontally centered ${nextItem}
+            left-of ${nextItem} ${margin}

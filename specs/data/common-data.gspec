@@ -1,5 +1,6 @@
 @import ../rules.gspec
 @import ../galen-extras/galen-extras-rules.gspec
+@script ../galen-extras/custom-javascript-functions.js
 
 @set
     minimal             -1 to 1px
@@ -8,13 +9,22 @@
     normal              15 to 25px
     medium              25 to 35px
 
-    container_width     1080px
-    container_width     1080px
-    container_width     1080px
-    container_width     1080px
-    
+    # min-width: 576px
+    container_width_sm     540px
+    # min-width: 768px(目前小于768px，样式定义为移动端)
+    container_width_md     720px
+    # min-width: 992px
+    container_width_lg     960px
+    # min-width: 1200px
+    container_width_xl     1080px
 
-@on mobile
+    fixed_space            15px
+    
+    desktop_css_check_common_card_title             {"font-size":"34px","margin-bottom": "40px","text-align":"center"}
+    mobile_css_check_common_card_title              {"font-size":"22px","margin-bottom": "20px","text-align":"center"}
+    desktop_css_check_container_gap_padding         {"padding-top":"56px","padding-bottom":"56px","padding-left":"15px","padding-right":"15px"}
+    mobile_css_check_container_gap_padding          {"padding-top":"20px","padding-bottom":"20px","padding-left":"15px","padding-right":"15px"}
+@on *
     @set
         container_width     400px
 

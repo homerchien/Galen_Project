@@ -1,47 +1,162 @@
 @import data/common-data.gspec
 @import data/header-data.gspec
+@script properties/header.properties.js
+
+@set ele_desktop_icons_collection    ${ele_desktop_cart_icon}
+# ----个人中心----
+@if ${conf_is_account_show == "true"}
+    @set ele_desktop_icons_collection    ${ele_desktop_account_icon},${ele_desktop_icons_collection}
+# ----搜索----
+@if ${conf_is_search_show == "true"}
+    @set ele_desktop_icons_collection    ${ele_desktop_search_icon},${ele_desktop_icons_collection}
+# ----货币切换----
+@if ${conf_is_currency_show == "true" && conf_alignment == "left"}
+    @set ele_desktop_icons_collection    ${ele_desktop_icons_collection},${ele_desktop_currency_block}
+
+@set ele_mobile_icons_collection    ${ele_mobile_menu_icon}
+@if ${conf_is_search_show == "true"}
+    @set ele_mobile_icons_collection    ${ele_mobile_icons_collection},${ele_mobile_search_icon}
+
+
+
 
 = Header =
-#    @on mobile
-#        header:
-#            height ~94px
-#            centered horizontally inside screen
-#        header.container-mobile.logo-block:
-#            inside header ~115px left, 0 to 50px top bottom
-#            width ~170px
-#            height ~53px
-#            text is "homer"
-#        header.container-mobile.select-country-block:
-#            left-of header.container-mobile.logo-block ~-285px
+    # ----公告栏是否开启----
+    @if ${conf_is_announce_show == 'true'}
+        = Announce =
+            # ----公告栏结构----
+            = Skeleton =
+                ${ele_announce}:
+                    visible
+                | the vertical padding of ${ele_announce_text} is 10px size
+            # ----公告栏文案----
+            = Text =
+                | ${ele_announce_text} fulfil common css rules follow by ${css_check_ele_announce_text}
+                ${ele_announce_text}:
+                    text is "${conf_announce_title}" 
+    @else
+        = Announce =
+            ${ele_announce}:
+                absent
+#               | ${ele_announce_text} should be inside of ${ele_announce} and take ~57 % of its width
+    @on desktop 
+    # ----仅首页显示公告栏----（暂不测）
+    # ----公告栏链接----（暂不测）
+    # ----logo图片----（暂不测）
+    # ----PC端logo位置----
+    # ----固定悬浮导航栏----(暂不测)
+    # ----菜单导航设置----
+    # ----颜色设置----
+    #
+        @if ${conf_alignment == 'center'}
+            = Header Logo =
+                = Header Logo Skeleton =
+                    | ${ele_desktop_header_blocks} are aligned horizontally next to each other with ~0px margin
+                    | the horizontal padding of ${ele_desktop_header_blocks} is 15px size
+                    | amount of visible ${ele_desktop_header_blocks} should be 3
+                    @if ${conf_is_currency_show == "true"}
+                        ${ele_desktop_first_block}:
+                            contains ${ele_desktop_currency_block}
+                            width ~25% of ${ele_desktop_row}/width
+                    ${ele_desktop_second_block}:
+                        contains ${ele_desktop_logo_text}
+                        width ~50% of ${ele_desktop_row}/width
+                    ${ele_desktop_third_block}:
+                        contains ${ele_desktop_icons_collection}
+                        width ~25% of ${ele_desktop_row}/width
+                # 左侧区域
+                = Left Block =
+                    @if ${conf_is_currency_show == "true"}
+                        ${ele_desktop_currency_flag}:
+                            width 24px
+                            left-of ${ele_desktop_currency_text} 10px 
+                # 中间区域
+                = Center Block =
+                    ${ele_desktop_logo_text}:
+                        text is "homer"
+                        css line-height is "48px"
+                        centered horizontally inside ${ele_desktop_row}
+                # 右侧区域
+                = Right Block =
+                    | ${ele_desktop_icons_collection} are aligned horizontally next to each other with 40px margin
+            = Navigation =
+                = Navigation Skeleton =
+                    | ${ele_navigation_pc_items} are aligned horizontally next to each other with ~50px margin
+                    ${ele_navigation_pc_menu_link}:
+                        width 1 to 200px
+                        centered horizontally inside ${ele_navigation_pc}
+        @elseif ${conf_alignment == 'left'}
+            = Header Logo =
+                = Header Logo Skeleton =
+                    | ${ele_desktop_header_blocks} are aligned horizontally next to each other with ~0px margin
+                    | the horizontal padding of ${ele_desktop_header_blocks} is 15px size
+                    | amount of visible ${ele_desktop_header_blocks} should be 2
+                    ${ele_desktop_first_block}:
+                        contains ${ele_desktop_logo_text}
+                    ${ele_desktop_second_block}:
+                       # contains ${ele_desktop_cart_icon},${ele_desktop_account_icon},${ele_desktop_search_icon},${ele_desktop_currency_block}
+                        contains ${ele_desktop_icons_collection}
+                    ${ele_desktop_header_blocks}:
+                        width ~50% of ${ele_desktop_row}/width
+                = Left Block =
+                    # 左侧区域
+                    ${ele_desktop_logo_text}:
+                        text is "homer"
+                        css line-height is "48px"
+                        aligned vertically left ${ele_desktop_row} 15px
+                = Right Block =
+                    # 右侧区域
+                    | ${ele_desktop_icons_collection} are aligned horizontally centered next to each other with 40px margin
+                    @if ${conf_is_currency_show == "true"}
+                        ${ele_desktop_currency_flag}:
+                            width 24px
+                            left-of ${ele_desktop_currency_text} 10px 
+            = Navigation =
+                = Navigation Skeleton =
+                    | ${ele_navigation_pc_items} are aligned horizontally next to each other with ~50px margin
+                    ${ele_navigation_pc_menu_link}:
+                        width 1 to 200px
+                        aligned vertically left ${ele_navigation_pc}
+    
+#    = Config Test =
+# ----购物车形状----(未找到测试方法，尝试过两种方式均不可用：
+#                   1、获取class值，但galen无法使用document
+#                   2、css选择器定位::before，但伪类元素不在document中，无法通过css定位)
+#        = Cart Style =
+#            @if ${conf_cart_style == "cart"}
+#                ${ele_desktop_cart_style}:
+#                    css content contains "sep-font-cart-thin"
+#            @elseif ${conf_cart_style == "bag"}
+#                ${ele_desktop_cart_style}:
+#                    css content contains "sep-font-bag-thin"
 
-    @on desktop
-        ${ele_card}:
-            height ~144px
-            centered horizontally inside screen
-        ${ele_desktop_logo_text}:
-            inside ${ele_card} ~337px left, 30 to 50px top bottom
-            width ~525px
-            height ~63px
-            text is "homer"
-        ${ele_desktop_logo_text}:
-            inside ${ele_card} ~337px left, 30 to 50px top bottom
-            width ~525px
-            height ~63px
 
-
-# = Menu =
-#     @on *
-#         | amount of visible &menu_items should be > 3
-#         | every &menu_item is inside menu and has height ${menu_height}
-#         | first &menu_item is inside menu 0px top left
-
-#     @on desktop, tablet
-#         | &menu_items are aligned horizontally next to each other
-#         | every &menu_item is aligned horizontally all menu
-#     @on mobile
-#         | &menu_items are rendered in 2 column table layout
-
-
-# = Footer =
-#     footer:
-#         height ${footer_height}
+# 移动端的控制左侧菜单栏的配置按钮，需要另测。注入js语句，点击左侧菜单，才可见配置选项
+    @on mobile
+        = Header Logo =
+            = Header Logo Skeleton =
+                | ${ele_mobile_header_blocks} are aligned horizontally next to each other with ~0px margin
+                | the horizontal padding of ${ele_mobile_header_blocks} is 15px size
+                | amount of visible ${ele_mobile_header_blocks} should be 3
+                ${ele_mobile_left_block}:
+                    contains ${ele_mobile_icons_collection}
+                    width ~25% of ${ele_container_mobile}/width
+                ${ele_mobile_center_block}:
+                    contains ${ele_mobile_logo_text}
+                    width ~50% of ${ele_container_mobile}/width
+                ${ele_mobile_right_block}:
+                    contains ${ele_mobile_cart_icon}
+                    width ~25% of ${ele_container_mobile}/width
+            # 左侧区域
+            = Left Block =
+                | ${ele_mobile_icons_collection} are aligned horizontally centered next to each other with ~20px margin
+            # 中间区域
+            = Center Block =
+                ${ele_mobile_logo_text}:
+                    text is "homer"
+                    css line-height is "48px"
+                    centered horizontally inside ${ele_mobile_row}
+            # 右侧区域
+            = Right Block =
+                ${ele_mobile_cart_icon}:
+                    inside ${ele_mobile_right_block} ~15px right
