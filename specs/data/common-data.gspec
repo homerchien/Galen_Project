@@ -10,13 +10,13 @@
     medium              25 to 35px
 
     # min-width: 576px
-    container_width_sm     540px
+    desktop_container_width_sm     540px
     # min-width: 768px(目前小于768px，样式定义为移动端)
-    container_width_md     720px
+    desktop_container_width_md     720px
     # min-width: 992px
-    container_width_lg     960px
+    desktop_container_width_lg     960px
     # min-width: 1200px
-    container_width_xl     1080px
+    desktop_container_width_xl     1080px
 
     fixed_space            15px
     
@@ -24,20 +24,6 @@
     mobile_css_check_common_card_title              {"font-size":"22px","margin-bottom": "20px","text-align":"center"}
     desktop_css_check_container_gap_padding         {"padding-top":"56px","padding-bottom":"56px","padding-left":"15px","padding-right":"15px"}
     mobile_css_check_container_gap_padding          {"padding-top":"20px","padding-bottom":"20px","padding-left":"15px","padding-right":"15px"}
-@on *
-    @set
-        container_width     400px
-
-    # header_height       ~ 70px
-    # menu_height         ~ 64px
-    # menu_item_height    ${menu_height}
-    # footer_height       ~ 150px
-
-    # header_mobile_text  Sample Website
-    # header_desktop_text Sample Website for Galen Framework
-
-    # content_vertical_margin 20 to 45px
-    # content_horizontal_margin ~ 20px
-
-    # form_textfield_height   34px
-
+    btn_primary                                     {"border-color":"#212121","background":"#212121","color":"#ffffff","padding-left":"30px","padding-right":"30px","padding-top":"10px","padding-bottom":"10px","font-size":"16px"}
+    btn_secondary                                   {"color":"#212529","padding-left":"30px","padding-right":"30px","padding-top":"10px","padding-bottom":"10px","font-size":"16px"}
+    

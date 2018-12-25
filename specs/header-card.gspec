@@ -31,7 +31,7 @@
                 | the vertical padding of ${ele_announce_text} is 10px size
             # ----公告栏文案----
             = Text =
-                | ${ele_announce_text} fulfil common css rules follow by ${css_check_ele_announce_text}
+                | ${ele_announce_text} fulfil common pattern rules follow by ${css_check_ele_announce_text}
                 ${ele_announce_text}:
                     text is "${conf_announce_title}" 
     @else

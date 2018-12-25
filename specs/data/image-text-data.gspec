@@ -9,6 +9,7 @@
 	            	text_title 		[class~="image-text__title"]
 	            	text_desc 		[class~="image-text__desc"]
 	            	text_btn		[class~="image-text__btn"]
+
 	            
 
 @on *
@@ -23,15 +24,18 @@
 		ele_text_desc				${"card.container.row.text.text_desc"}
 		ele_text_btn				${"card.container.row.text.text_btn"}
 
-		css_check_ele_text_title    {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"left"}
+		css_check_ele_text_desc     {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"left"}
+		css_check_ele_text_title    {"font-size":"30px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"left"}
 
 
 @on mobile
- 	@set
-	 	css_check_ele_text_title    {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"center"}
- 		# css_check_ele_text_title    ${allEven("ele_text_title","ele_text_desc")}
- 		# css_check_ele_text_title    ${resetJson(this.css_check_ele_text_title,'{"text-align":"right"}')}
- 		# css_check_ele_text_title    ${resetJson({"text-align":"left","font-family":"Work Sans"},{"text-align":"right"})}
+	@set
+		css_check_ele_text_desc     {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"center"}
+		css_check_ele_text_title    {"font-size":"24px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"center"}
+
+		# css_check_ele_text_title    ${allEven("ele_text_title","ele_text_desc")}
+		# css_check_ele_text_title    ${resetJson(this.css_check_ele_text_title,'{"text-align":"right"}')}
+		# css_check_ele_text_title    ${resetJson({"text-align":"left","font-family":"Work Sans"},{"text-align":"right"})}
 
 
 						

@@ -588,6 +588,14 @@
         inside ${parentItem}
         width ${percentWidth} % of ${parentItem}/${sizeSide}
 
+# eg.
+#   | message-* should be inside of main_container and take 70 % of its width after subtracting 30px extra-margin
+@rule %{itemPattern} should be inside of %{parentItem} and take %{percentWidth}% of its %{sizeSide: width|height} after subtracting %{size}px extra-margin
+    @set parentWidth ${var item = find(parentItem); Math.abs((item.width()-parseInt(size))*percentWidth/100)}
+    ${itemPattern}:
+        inside ${parentItem}
+        width ${parentWidth} px
+
 
 # eg.
 #   | the all padding of message-* is 10 px size
@@ -615,8 +623,40 @@
         
 # eg.
 #   | items-* are aligned horizontally centered next to each other with 40px margin
-@rule %{objectPattern} are aligned horizontally centered next to each other with %{margin} margin
+@rule %{objectPattern} are aligned %{orientation: vertically|horizontally} %{style: all|centered|top|bottom|left|right} %{follow: next to|above} each other with %{margin} margin
     @forEach [${objectPattern}] as item, next as nextItem
         ${item}:
-            aligned horizontally centered ${nextItem}
-            left-of ${nextItem} ${margin}
+            aligned ${orientation} ${style} ${nextItem}
+            @if ${follow == "next to"}
+                left-of ${nextItem} ${margin}
+            @elseif ${follow == "above"}
+                above ${nextItem} ${margin}
+
+# eg.
+#   | items-* are aligned horizontally centered next to each other with 40px margin
+@rule %{objectPattern} are aligned %{orientation: vertically|horizontally} %{style: all|centered|top|bottom|left|right} %{follow: next to|above} each other with %{margin} margin
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned ${orientation} ${style} ${nextItem}
+            @if ${follow == "next to"}
+                left-of ${nextItem} ${margin}
+            @elseif ${follow == "above"}
+                above ${nextItem} ${margin}
+
+# eg.
+#   | ${ele_text},${ele_image} should be take 10% of ${ele_container} width left of each other
+@rule %{objectPattern} should be take %{percentWidth}% of %{parentItem} %{sizeSide: width|height} and %{follow: left of|right of|above|below} next item
+    @if ${count(objectPattern) > 1}
+        @set _distance_ ${var item = find(parentItem); Math.abs(item.width()*percentWidth/100)}
+        @forEach [${objectPattern}] as item, next as nextItem
+            ${item}:
+                @if ${follow == "left of"}
+                    left-of ${nextItem} ${_distance_} px
+                @elseif ${follow == "right of"}
+                    right-of ${nextItem} ${_distance_} px
+                @elseif ${follow == "above"}
+                    above ${nextItem} ${_distance_} px
+                @elseif ${follow == "below"}
+                    below ${nextItem} ${_distance_} px
+
+       

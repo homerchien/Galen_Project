@@ -4,36 +4,27 @@
 
 = Images Text Card =
     = Skeleton =
-        ${ele_container}:
-            width ${container_width} 
-            centered all inside ${ele_card} 
-
         @on desktop
-            @if ${this.conf_settings_layout === 'right'}
-                ${ele_image}:
-                    left-of ${ele_text} 20px
-            @elseif ${this.conf_settings_layout === 'left'}
-                ${ele_image}:
-                    right-of ${ele_text} 108px
-            ${ele_row}:
-                width 1080px
-                height 380px
+            ${ele_container}:
+                width ${desktop_container_width_xl} 
+                centered all inside ${ele_card} 
+            | ${ele_container} fulfil common pattern rules follow by ${desktop_css_check_container_gap_padding} 
+            @if ${conf_settings_layout == 'right'}
+                | ${ele_text},${ele_image} should be take 10% of ${ele_container} width and right of next item
+            @elseif ${conf_settings_layout == 'left'}
+                | ${ele_text},${ele_image} should be take 10% of ${ele_container} width and left of next item
 
         @on mobile
-            ${ele_image}:
-                above ${ele_text} 20px
-            ${ele_row}:
-                width 400px
-                height 503px
+            ${ele_container}:
+                width 100% of screen/width
+                centered all inside ${ele_card} 
+            | ${ele_container} fulfil common pattern rules follow by ${mobile_css_check_container_gap_padding} 
+            | ${ele_image},${ele_text} are aligned vertically all above each other with 20px margin
     = Image =
         @on desktop
-            ${ele_image}:
-                width 540px
-                height 380px
+            | ${ele_image} should be inside of ${ele_row} and take 50 % of its width
         @on mobile
-            ${ele_image}:
-                width 370px
-                height 260px
+            | ${ele_image} should be inside of ${ele_row} and take 100 % of its width after subtracting 30 px extra-margin
     = Text =
         @on desktop
             ${ele_text_title}:
@@ -46,17 +37,16 @@
             text is "${conf_settings_title}"
         ${ele_text_desc}:
             text is "${conf_settings_desc}"
-        | ${ele_text_desc} fulfil common css rules follow by ${css_check_ele_text_title}
+        | ${ele_text_title} fulfil common pattern rules follow by ${css_check_ele_text_title}
+        | ${ele_text_desc} fulfil common pattern rules follow by ${css_check_ele_text_desc}
 
-        @if ${isVisible("this.ele_text_btn")}
+        @if ${conf_settings_button_label != ""}
             ${ele_text_btn}:
-                aligned vertically left ${ele_text_title}
                 text is "${conf_settings_button_label}"
-                css href is "${conf_settings_button_link}"
+                @on desktop
+                    below ${ele_text_desc} 34 to 50 px
+                    aligned vertically left ${ele_text_title}
+                @on mobile
+                    below ${ele_text_desc} 9 to 25 px
+                    aligned vertically centered ${ele_text_title}
 
-            
-
-                # css font-size is "${block_text_size}"
-                # css font-family is "${block_text_front_family}"
-                # css color is "${block_text_color}"
-                # css text-align is "${conf_settings_align_text}"
