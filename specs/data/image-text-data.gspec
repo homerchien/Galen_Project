@@ -32,12 +32,6 @@
 	@set
 		css_check_ele_text_desc     {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"center"}
 		css_check_ele_text_title    {"font-size":"24px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"center"}
-
-		# css_check_ele_text_title    ${allEven("ele_text_title","ele_text_desc")}
-		# css_check_ele_text_title    ${resetJson(this.css_check_ele_text_title,'{"text-align":"right"}')}
-		# css_check_ele_text_title    ${resetJson({"text-align":"left","font-family":"Work Sans"},{"text-align":"right"})}
-
-
-						
-		
+		# text_css					{"font-size":"16px","font-family":"Work Sansssss"}
+		# css_check_ele_text_title    ${updateJson(css_check_ele_text_title,text_css)}
 		

@@ -5,10 +5,11 @@
 = Collection List Card =
     = Skeleton =
         ${ele_container}:
-            width ${container_width} 
-            centered all inside ${ele_card} 
-        global:
-            count any ${ele_only_items} is 3
+            width ${desktop_container_width_xl} 
+            centered all inside ${ele_card}  
+#            text is "${getJsonLen(['1','2'])}"
+#        | amount of any ${ele_only_items} should be ${getJsonLen(this.conf_settings_grid)}
+
             
     = Text =
         ${ele_title}:
@@ -23,23 +24,12 @@
             | ${ele_only_items} are aligned vertically above each other with ~15px margin
             | every ${ele_only_items} has width 370px
             | every ${ele_only_items} has height 370px
-            # @forEach [card.container.collection_row.mobileItem-*] as item, next as nextItem
-            #     ${item}:
-            #         above ${nextItem} ~15px
-            #         aligned vertically all ${nextItem}
-            #         width 370px
-            #         height 370px
 
         @on desktop
             | ${ele_only_items} are aligned horizontally next to each other with ~12px margin
             | every ${ele_only_items} has width 352px
             | every ${ele_only_items} has height 276px
-            # @for [ 1 - 2 ] as index
-            #     card.container.collection_row.desktopItem-${index}:
-            #         left-of card.container.collection_row.desktopItem-${index + 1} ~12px
-            #         aligned horizontally all card.container.collection_row.desktopItem-${index + 1}
-            #         width 352px 
-            #         height 276px 
+
 
 
 

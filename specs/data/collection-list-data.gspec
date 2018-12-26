@@ -1,3 +1,4 @@
+@script ../properties/collection-list.properties.js
 @objects
     card        					[data-section-type="collection_list_plus"]
     	container					[class~="container"]
@@ -19,6 +20,8 @@
 		ele_title			${"card.container.row.card_title"}
 		ele_collection_row	${"card.container.collection_row"}
 
+		css_check_ele_text_title    {"font-size":"30px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"left"}
+
 @on desktop
 	@set
 		title_size 34px 		
@@ -30,4 +33,6 @@
     	title_size 22px
     	title_bottom_gap 20px
     	ele_only_items ${"card.container.collection_row.mobileItem-#"}	
+@set
+	ele_collection_qweasd    ${getJsonLen(this.css_check_ele_text_title)}
 
