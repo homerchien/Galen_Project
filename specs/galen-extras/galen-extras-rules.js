@@ -239,6 +239,30 @@ rule("%{objectPattern} fulfil common pattern rules follow by %{rulesValueJson}",
     if(valueJson.hasOwnProperty("background-color")){
         SpecStatementList.push("css background-color is " + "\"" + valueJson["background-color"] +"\"");
     }
+    if(valueJson.hasOwnProperty("margin-top")){
+        SpecStatementList.push("css margin-top is " + "\"" + valueJson["margin-top"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("margin-bottom")){
+        SpecStatementList.push("css margin-bottom is " + "\"" + valueJson["margin-bottom"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("margin-left")){
+        SpecStatementList.push("css margin-left is " + "\"" + valueJson["margin-left"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("margin-right")){
+        SpecStatementList.push("css margin-right is " + "\"" + valueJson["margin-right"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("padding-top")){
+        SpecStatementList.push("css padding-top is " + "\"" + valueJson["padding-top"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("padding-bottom")){
+        SpecStatementList.push("css padding-bottom is " + "\"" + valueJson["padding-bottom"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("padding-left")){
+        SpecStatementList.push("css padding-left is " + "\"" + valueJson["padding-left"] +"\"");
+    }
+    if(valueJson.hasOwnProperty("padding-right")){
+        SpecStatementList.push("css padding-right is " + "\"" + valueJson["padding-right"] +"\"");
+    }
     // System.out.println(JSON.stringify(SpecStatementList));
     if (items.length > 0) {
         for (var i = 0; i < items.length; i++) {

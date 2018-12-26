@@ -1,7 +1,6 @@
 conf_settings_name = "Collection list";
-conf_settings_grid = "3";
-conf_blocks_a = '["a","b"]';
-conf_blocks = `[{
+conf_settings_grid = "4";
+conf_blocks = [{
     "type": "collection",
     "name": "autotest_collection_name_lC5CWG3",
     "settings": {
@@ -37,5 +36,5 @@ conf_blocks = `[{
     "settings": {
       "collection": null
     }
-  }]`;
+  }];
 

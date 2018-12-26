@@ -5,31 +5,30 @@
 = Collection List Card =
     = Skeleton =
         ${ele_container}:
-            width ${desktop_container_width_xl} 
-            centered all inside ${ele_card}  
-#            text is "${getJsonLen(['1','2'])}"
-#        | amount of any ${ele_only_items} should be ${getJsonLen(this.conf_settings_grid)}
+            @on desktop
+                width ${desktop_container_width_xl}
+            @on mobile
+                width 100% of screen/width
+        | amount of any ${ele_only_items} should be ${getArrayLength(conf_blocks)}
 
-            
     = Text =
         ${ele_title}:
             text is "${conf_settings_name}"
-            inside ${ele_row} ${title_bottom_gap} bottom
-            css font-size is "${title_size}"
-            css font-family is "${title_front_family}"
-            css color is "${title_color}"
+            inside ${ele_title_row}
+        | ${ele_title} fulfil common pattern rules follow by ${css_check_ele_text_title}
+ 
 
     = Image =
-        @on mobile
-            | ${ele_only_items} are aligned vertically above each other with ~15px margin
-            | every ${ele_only_items} has width 370px
-            | every ${ele_only_items} has height 370px
-
         @on desktop
-            | ${ele_only_items} are aligned horizontally next to each other with ~12px margin
-            | every ${ele_only_items} has width 352px
-            | every ${ele_only_items} has height 276px
+            | every ${ele_only_items} should be squared
+            #| ${ele_only_items} should be inside of ${ele_collection_row} and take ${col_precent} % of its width after subtracting ${total_items_gap}px extra-margin
+            | ${ele_only_items} should be inside of ${ele_collection_row} and divide in ${conf_settings_grid} equally by 24 px fixed space
+            | ${ele_only_items} should be ${conf_settings_grid} in a row with 24px horizontal gap and 24px vertical gap
 
+        @on mobile
+            | every ${ele_only_items} should be squared
+            | ${ele_only_items} should be inside of ${ele_collection_row} and take 50 % of its width after subtracting 30 px extra-margin
+            | ${ele_only_items} should be 2 in a row with 15px horizontal gap and 15px vertical gap
 
 
 

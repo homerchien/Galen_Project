@@ -1,4 +1,4 @@
-
+@script custom-javascript-functions.js
 @if ${this.GEXTRAS_NO_MARGIN === undefined || this.GEXTRAS_NO_MARGIN === null}
     @set GEXTRAS_NO_MARGIN  -1 to 1px
 
@@ -582,6 +582,7 @@
 
 # By Homer
 # eg.
+#   元素1集合在元素2中，并且宽度（/高度）占元素2的宽度（/高度）百分之70
 #   | message-* should be inside of main_container and take 70 % of its width
 @rule %{itemPattern} should be inside of %{parentItem} and take %{percentWidth}% of its %{sizeSide: width|height}
     ${itemPattern}:
@@ -589,6 +590,7 @@
         width ${percentWidth} % of ${parentItem}/${sizeSide}
 
 # eg.
+#   元素1集合在元素2中，除去margin不纳入计算，宽度（/高度）占元素2的宽度（/高度）百分之70
 #   | message-* should be inside of main_container and take 70 % of its width after subtracting 30px extra-margin
 @rule %{itemPattern} should be inside of %{parentItem} and take %{percentWidth}% of its %{sizeSide: width|height} after subtracting %{size}px extra-margin
     @set parentWidth ${var item = find(parentItem); Math.abs((item.width()-parseInt(size))*percentWidth/100)}
@@ -596,8 +598,20 @@
         inside ${parentItem}
         width ${parentWidth} px
 
+# eg.
+#   元素1集合在元素2中，并且被固定间距（24px）平均分割为4等分
+#   | ${ele_only_items} should be inside of ${ele_collection_row} and divide in ${conf_settings_grid} equally by 24 px fixed space
+@rule %{itemPattern} should be inside of %{parentItem} and divide in %{num} equally by %{size}px fixed space
+    @set total_items_gap     ${parseInt(num)*24}
+	@set col_precent         ${1/parseInt(num)*100}
+    @set parentWidth ${var item = find(parentItem); Math.abs((item.width()-total_items_gap)*col_precent/100)}
+    ${itemPattern}:
+        inside ${parentItem}
+        width ${parentWidth} px
+
 
 # eg.
+#   元素集合的padding为10px
 #   | the all padding of message-* is 10 px size
 @rule the %{style: all|vertical|horizontal|top|bottom|left|right} padding of %{itemPattern} is %{size} size
     ${itemPattern}:
@@ -622,6 +636,7 @@
             css padding-right is "${size}"
         
 # eg.
+#   元素集合水平对齐，且每个元素的间距为40px
 #   | items-* are aligned horizontally centered next to each other with 40px margin
 @rule %{objectPattern} are aligned %{orientation: vertically|horizontally} %{style: all|centered|top|bottom|left|right} %{follow: next to|above} each other with %{margin} margin
     @forEach [${objectPattern}] as item, next as nextItem
@@ -633,17 +648,7 @@
                 above ${nextItem} ${margin}
 
 # eg.
-#   | items-* are aligned horizontally centered next to each other with 40px margin
-@rule %{objectPattern} are aligned %{orientation: vertically|horizontally} %{style: all|centered|top|bottom|left|right} %{follow: next to|above} each other with %{margin} margin
-    @forEach [${objectPattern}] as item, next as nextItem
-        ${item}:
-            aligned ${orientation} ${style} ${nextItem}
-            @if ${follow == "next to"}
-                left-of ${nextItem} ${margin}
-            @elseif ${follow == "above"}
-                above ${nextItem} ${margin}
-
-# eg.
+#   元素集合之间的间距为元素1宽度（/高度）的百分值10
 #   | ${ele_text},${ele_image} should be take 10% of ${ele_container} width left of each other
 @rule %{objectPattern} should be take %{percentWidth}% of %{parentItem} %{sizeSide: width|height} and %{follow: left of|right of|above|below} next item
     @if ${count(objectPattern) > 1}
@@ -659,4 +664,22 @@
                 @elseif ${follow == "below"}
                     below ${nextItem} ${_distance_} px
 
-       
+# eg.
+#   此方法用于grid，比较grid的各个元素是否平行，垂直，水平距离、垂直距离为多少
+#   | ${ele_only_items} should be ${conf_settings_grid} in a row with 24px horizontal gap and 24px vertical gap
+@rule %{objectPattern} should be %{gridSetting} in a row with %{horizontalGap} horizontal gap and %{verticalGap} vertical gap
+    @set object_num     ${count(objectPattern)}
+    @if ${object_num > 1}
+        @for [1-${object_num}] as i
+            @if ${ i < gridSetting }
+                ${getCertainPatternByIndex(objectPattern,i)}:
+                    aligned horizontally all ${getCertainPatternByIndex(objectPattern,i+1)}
+                    left-of ${getCertainPatternByIndex(objectPattern,i+1)} ${horizontalGap}
+            @elseif ${ gridSetting < i }
+                ${getCertainPatternByIndex(objectPattern,i)}:
+                    @if ${ object_num != i && i % gridSetting != 0 }
+                        aligned horizontally all ${getCertainPatternByIndex(objectPattern,i+1)}
+                        left-of ${getCertainPatternByIndex(objectPattern,i+1)} ${horizontalGap}
+                    aligned vertically all ${getCertainPatternByIndex(objectPattern,i-gridSetting)}
+                    below ${getCertainPatternByIndex(objectPattern,i-gridSetting)} ${verticalGap}
+
