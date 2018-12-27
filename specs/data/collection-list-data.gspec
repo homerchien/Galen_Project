@@ -21,13 +21,12 @@
 
 @on desktop
 	@set
-		total_items_gap     ${parseInt(conf_settings_grid)*24}
-		col_precent         ${1/parseInt(conf_settings_grid)*100}
+#		total_items_gap     ${parseInt(conf_settings_grid)*24}
+#		col_precent         ${1/parseInt(conf_settings_grid)*100}
 		ele_only_items		${"card.container.collection_row.desktopItem-#"}	
 		css_check_ele_text_title    ${desktop_css_check_common_card_title}
 
 @on mobile
     @set 
     	ele_only_items		${"card.container.collection_row.mobileItem-#"}
-		desktop_container_width_xl   screen
 		css_check_ele_text_title    ${mobile_css_check_common_card_title}

@@ -34,6 +34,11 @@ this.getArrayLength = function (Array) {
     return Array.length;
 };
 
+
+this.arrayToString = function (Array) {
+    return JSON.stringify(Array);
+};
+
 // 获取指定表达式（主要与传统for循环一起使用，可通过index选择元素）
 this.getCertainPatternByIndex = function (objectPattern,index) {
     // System.out.println(typeof objectPattern);

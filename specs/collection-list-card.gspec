@@ -28,7 +28,7 @@
         @on mobile
             | every ${ele_only_items} should be squared
             | ${ele_only_items} should be inside of ${ele_collection_row} and take 50 % of its width after subtracting 30 px extra-margin
-            | ${ele_only_items} should be 2 in a row with 15px horizontal gap and 15px vertical gap
+            | ${ele_only_items} should be 2 in a row with 15px horizontal gap and ~15px vertical gap
 
 
 

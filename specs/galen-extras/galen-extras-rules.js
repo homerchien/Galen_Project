@@ -273,3 +273,27 @@ rule("%{objectPattern} fulfil common pattern rules follow by %{rulesValueJson}",
     }
 });
 
+// eg.
+//    | ${ele_only_items_hero} fulfil css background-position-y is ${conf_blocks_settings_alignment} from ['settings'] by one-to-one mapping
+rule("%{objectListA} %{verb: is|has|fulfil} %{spec} the value of %{configJson} from %{locator} by one-to-one mapping", function(objectName, parameters) {
+    var itemsA = findAll(parameters.objectListA);
+    // var configJson_ = parameters.configJson;
+    var configJson_ = JSON.parse(parameters.configJson);
+    // System.out.println(parameters.configJson);
+    // System.out.println(parameters.locator);
+    // System.out.println(typeof String(parameters.locator));
+    var keyList = String(parameters.locator).split(".");
+    if (itemsA.length > 0) {
+        for (var i = 0; i < itemsA.length; i++) {
+            var target = configJson_[i];
+            for(var j in keyList){
+                // System.out.println(String(keyList[j]));
+                target = target[keyList[j]];
+            }
+            // System.out.println(target);
+            this.addObjectSpecs(itemsA[i].name, [  parameters.spec + " \"" + target +"\""]);
+        }
+    } else {
+        throw new Error("Couldn't find any items matching " + parameters.objectListA + "&" + configJson_);
+    }
+});
