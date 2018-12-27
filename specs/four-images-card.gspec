@@ -5,8 +5,11 @@
 = Four Images Card =
     = Skeleton =
         ${ele_container}:
-            width ${container_width} 
-            centered horizontally inside ${ele_card} 
+            @on desktop
+                width ${desktop_container_width_xl}
+            @on mobile
+                width 100% of screen/width
+        | amount of any ${ele_only_items} should be ${getArrayLength(conf_blocks)} 
         @on mobile
             ${ele_top}:
                 width 370px

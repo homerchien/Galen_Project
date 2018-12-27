@@ -50,7 +50,7 @@
                 | ${ele_only_items_title} inside of ${ele_only_items} and ~12px left right of its separately
             @on mobile
                 | ${ele_only_items_title} inside of ${ele_only_items} and ~8px left right of its separately
-            | ${ele_only_items_title} fulfil text is the value of ${arrayToString(conf_blocks)} from settings.title by one-to-one mapping
+            | ${ele_only_items_title} fulfil text is the value of settings.title from ${arrayToString(conf_blocks)} by one-to-one mapping
             | ${ele_only_items_title} fulfil common pattern rules follow by ${css_check_ele_items_title}
 
         = Describe =
@@ -59,7 +59,7 @@
             @on mobile
                 | ${ele_only_items_text} inside of ${ele_only_items} and ~8px left right of its separately
             | ${ele_only_items_text} inside of ${ele_only_items} and 18px bottom of its separately
-            | ${ele_only_items_text} fulfil text is the value of ${arrayToString(conf_blocks)} from settings.text by one-to-one mapping
+            | ${ele_only_items_text} fulfil text is the value of settings.text from ${arrayToString(conf_blocks)} by one-to-one mapping
             | ${ele_only_items_text} fulfil common pattern rules follow by ${css_check_ele_items_text}
                 
 
