@@ -4,60 +4,42 @@
 
 = Four Images Card =
     = Skeleton =
-        ${ele_container}:
-            @on desktop
-                width ${desktop_container_width_xl}
-            @on mobile
-                width 100% of screen/width
-        | amount of any ${ele_only_items} should be ${getArrayLength(conf_blocks)} 
-        @on mobile
-            ${ele_top}:
-                width 370px
-                height 367px
         @on desktop
-            ${ele_top}:
-                width 1074px
-                height 708px
+            ${ele_container}:
+                width ${desktop_container_width_xl}
+            | ${ele_container} fulfil common pattern rules follow by ${desktop_css_check_container_gap_padding}
+        @on mobile
+            ${ele_container}:
+                width 100% of screen/width
+            | ${ele_container} fulfil common pattern rules follow by ${mobile_css_check_container_gap_padding}
         
         ${ele_top_left}:
             aligned horizontally top ${ele_only_top_right_image}
             aligned vertically left ${ele_bottom}
+        @on desktop
+            = Left Image =
+                | ${ele_top_left} should be inside of ${ele_top} and take 68 to 69 % of its width
+            = Right Image =
+                | ${ele_top_right} should be inside of ${ele_top} and take 31 to 32 % of its width
+            = Bottom Image =
+                ${ele_bottom}:
+                    width 68 to 69 % of ${ele_top}/width
+        @on mobile
+            = Left Image =
+                ${ele_top_left}:
+                    width 50% of ${ele_top}/width
+            = Right Image =
+                | ${ele_top_right} should be inside of ${ele_top} and take 50 % of its width
+            = Bottom Image =
+                ${ele_bottom}:
+                    width 100 % of ${ele_top}/width
 
     = Image =
         = Left Image =
-            @on mobile
-                | ${ele_only_top_left_image} are aligned vertically above each other with ~15px margin
-                | every ${ele_only_top_left_image} has width 177px
-                | every ${ele_only_top_left_image} has height 177px
-                | ${ele_only_top_left_image} should be squared
-               
             @on desktop
-                | ${ele_only_top_left_image} are aligned horizontally next to each other with ~23px margin
-                | every ${ele_only_top_left_image} has width 342px
-                | every ${ele_only_top_left_image} has height 342px
-                | ${ele_only_top_left_image} should be squared
+                | ${ele_only_top_left_image} are aligned horizontally all next to each other with ~0px margin
+                | ${ele_only_top_left_image} should be inside of ${ele_top_left} and take 50 % of its width
 
-        = Right Image =
             @on mobile
-                ${ele_only_top_right_image}:
-                    width 177px
-                    height 366px
-               
-            @on desktop
-                ${ele_only_top_right_image}:
-                    width 342px
-                    height 708px
-
-        = Bottom Image =
-            @on mobile
-                ${ele_only_bottom_image}:
-                    width 370px
-                    height 178px
-               
-            @on desktop
-                ${ele_only_bottom_image}:
-                    width 708px
-                    height 342px
-                
-
-
+                | ${ele_only_top_left_image} are aligned vertically all above each other
+                | ${ele_only_top_left_image} should be inside of ${ele_top_left} and take 95 to 96 % of its width

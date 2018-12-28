@@ -636,7 +636,19 @@
             css padding-left is "${size}"
         @elseif ${style == 'right'}
             css padding-right is "${size}"
-        
+
+# eg.
+#   元素集合水平对齐，且每个元素的间距为40px
+#   | items-* are aligned horizontally centered next to each other with 40px margin
+@rule %{objectPattern} are aligned %{orientation: vertically|horizontally} %{style: all|centered|top|bottom|left|right} %{follow: next to|above} each other
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned ${orientation} ${style} ${nextItem}
+            @if ${follow == "next to"}
+                left-of ${nextItem}
+            @elseif ${follow == "above"}
+                above ${nextItem}
+
 # eg.
 #   元素集合水平对齐，且每个元素的间距为40px
 #   | items-* are aligned horizontally centered next to each other with 40px margin
