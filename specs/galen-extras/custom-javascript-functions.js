@@ -30,13 +30,47 @@ this.getJsonLength = function (json) {
 };
 
 // 获取Array长度
-this.getArrayLength = function (Array) {
-    return Array.length;
+this.getArrayLength = function (array) {
+    return array.length;
 };
 
+// arrayToString
+this.arrayToString = function (array) {
+    return JSON.stringify(array);
+};
 
-this.arrayToString = function (Array) {
-    return JSON.stringify(Array);
+// 按照规则修改Array内的值
+this.resetArrayFromRules = function (array,rulesJson) {
+    var rules = JSON.parse(rulesJson);
+    var reArr = [];
+    // {"top":"0%","center":"50%","bottom":"100%"}
+    for (var i=0; i<array.length; i++) {
+        reArr.push(rules[array[i]]);
+        // System.out.println(array[i]);
+    }
+    // System.out.println(String(reArr));
+    return reArr;
+};
+
+// 通过path提取需要的数据，重组array
+this.resetArrayFromPath = function (array,path,isPassEmpty) {
+    // System.out.println(typeof Array);
+    isPassEmpty = typeof isPassEmpty !== 'undefined' ?  isPassEmpty : false;
+    var arr = [];
+    var tempContent;
+    var pathList = path.split(".");
+    for (var i=0;i<array.length;i++){
+        tempContent = array[i];
+        for(var j=0;j<pathList.length;j++){
+            tempContent = tempContent[pathList[j]];
+        }
+        if(isPassEmpty && tempContent === ""){
+            continue;
+        }
+        arr.push(tempContent);
+    }
+    // System.out.println(String(arr));
+    return arr;
 };
 
 // 获取指定表达式（主要与传统for循环一起使用，可通过index选择元素）

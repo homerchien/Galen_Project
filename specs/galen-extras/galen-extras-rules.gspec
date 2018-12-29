@@ -662,11 +662,26 @@
                 above ${nextItem} ${margin}
 
 # eg.
+#   元素集合水平对齐(允许2px偏差)，且每个元素的间距为40px
+#   | items-* are aligned horizontally centered 2px and next to each other with 40px margin
+@rule %{objectPattern} are aligned %{orientation: vertically|horizontally} %{style: all|centered|top|bottom|left|right} %{deviation}px and %{follow: next to|above} each other with %{margin} margin
+    @forEach [${objectPattern}] as item, next as nextItem
+        ${item}:
+            aligned ${orientation} ${style} ${nextItem} ${deviation}px
+            @if ${follow == "next to"}
+                left-of ${nextItem} ${margin}
+            @elseif ${follow == "above"}
+                above ${nextItem} ${margin}
+
+# eg.
 #   元素集合之间的间距为元素1宽度（/高度）的百分值10
 #   | ${ele_text},${ele_image} should be take 10% of ${ele_container} width left of each other
 @rule %{objectPattern} should be take %{percentWidth}% of %{parentItem} %{sizeSide: width|height} and %{follow: left of|right of|above|below} next item
     @if ${count(objectPattern) > 1}
-        @set _distance_ ${var item = find(parentItem); Math.abs(item.width()*percentWidth/100)}
+        @if ${sizeSide == "width"}
+            @set _distance_ ${var item = find(parentItem); Math.abs(item.width()*percentWidth/100)}
+        @elseif ${sizeSide == "height"}
+            @set _distance_ ${var item = find(parentItem); Math.abs(item.height()*percentWidth/100)}
         @forEach [${objectPattern}] as item, next as nextItem
             ${item}:
                 @if ${follow == "left of"}
@@ -677,6 +692,27 @@
                     above ${nextItem} ${_distance_} px
                 @elseif ${follow == "below"}
                     below ${nextItem} ${_distance_} px
+
+# eg.
+#   元素集合A满足css(/width/height)是(/几乎)元素B宽度(/高度)的58%
+#   | ${ele_only_items_pic_height} fulfil css padding-bottom matches the value is 58% of ${ele_only_items} width
+@rule %{objectPattern} %{verb1: is|has|fulfil} %{spec} the value %{verb2: is|belike} %{percent}% of %{parentItem} %{sizeSide: width|height}
+    @if ${sizeSide == "width"}
+        @set _size_ ${var item = find(parentItem); Math.abs(item.width()*percent/100)}
+    @elseif ${sizeSide == "height"}
+        @set _size_ ${var item = find(parentItem); Math.abs(item.height()*percent/100)}
+    @set _size1_ ${parseInt(_size_)-5}
+    @set _size2_ ${parseInt(_size_)+5}
+    @forEach [${objectPattern}] as item
+        ${item}:
+            @if ${spec.indexOf("css") > -1 && spec.indexOf("matches") > -1}
+                ${spec} "${_size_}.*px"
+            @elseif ${spec.indexOf("css") > -1 && spec.indexOf("is") > -1}
+                ${spec} "${_size_}px"
+            @elseif ${verb2.indexOf("belike") > -1}
+                ${spec} ${_size1_} to ${_size2_}px
+            @else
+                ${spec} ${_size_}px
 
 # eg.
 #   此方法用于grid，比较grid的各个元素是否平行，垂直，水平距离、垂直距离为多少

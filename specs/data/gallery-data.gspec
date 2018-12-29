@@ -1,21 +1,48 @@
+
+@script ../properties/gallery.properties.js
 @objects
     card        					[data-section-type="gallery"]
     	image_bar					[class~="image-bar"]
-	        item-*                  [class~="grid__item"]
+	        desktop_item-*          .grid__item.d-none
 	        	hero				[class~="hero"]
-	            title				[class~="mega-title]
+				hover_zoom			.hover-zoom
+	        mobile_item-*           .grid__item.d-md-none
+	        	hero				[class~="hero"]
+				hover_zoom			.hover-zoom
+	desktop_title-*					[data-section-type="gallery"] .grid__item.d-none .mega-title
+	mobile_title-*					[data-section-type="gallery"] .grid__item.d-md-none .mega-title
+	desktop_pic_height-*			[data-section-type="gallery"] .grid__item.d-none  > div
+	mobile_pic_height-*				[data-section-type="gallery"] .grid__item.d-md-none  > div
 
-@on *
+@set
+	# element set
+	rules								{"top":"0%","center":"50%","bottom":"100%"}
+	ele_card 							${"card"}
+	ele_image_bar 						${"card.image_bar"}
+	block_quantity						${getArrayLength(conf_blocks)}
+	block_title_list					${arrayToString(resetArrayFromPath(conf_blocks,'settings.title',true))}
+	block_alignment_list				${arrayToString(resetArrayFromRules(resetArrayFromPath(conf_blocks,'settings.alignment'),rules))}
+	block_title_quantity				${getArrayLength(resetArrayFromPath(conf_blocks,'settings.title',true))}
+	css_check_ele_title					{"font-size":"32px","margin-bottom": "8px","text-align":"center"}
+	
+	
+	
+	#bath_test					${getJsonLength({"top":"0%","center":"50%","bottom":"100%"})}
+
+@on desktop
 	@set
-		# element set
-		ele_card 					${"card"}
-		ele_image_bar 				${"card.image_bar"}
-		ele_only_items				${"card.image_bar.item-#"}
-		ele_only_items_hero			${"card.image_bar.item-#.hero"}
-		ele_only_items_title		${"card.container.item-*.title"}
-		num_of_ele_only_items		${count("card.image_bar.item-#")}
-		index  						${num_of_ele_only_items-1}
-
+		ele_only_items				${"card.image_bar.desktop_item-#"}
+		ele_only_items_hero			${"card.image_bar.desktop_item-#.hero"}
+		ele_only_items_title		${"desktop_title-#"}
+		ele_only_items_pic_height	${"desktop_pic_height-#"}
+		ele_only_items_hover_zoom	${"card.image_bar.desktop_item-#.hover_zoom"}
+@on mobile
+	@set
+		ele_only_items				${"card.image_bar.mobile_item-#"}
+		ele_only_items_hero			${"card.image_bar.mobile_item-#.hero"}
+		ele_only_items_title		${"mobile_title-#"}
+		ele_only_items_pic_height	${"mobile_pic_height-#"}
+		ele_only_items_hover_zoom	${"card.image_bar.mobile_item-#.hover_zoom"}
 
 
 

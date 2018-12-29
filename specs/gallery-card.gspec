@@ -2,58 +2,74 @@
 @import data/gallery-data.gspec
 @script properties/gallery.properties.js
 
-@script 
-    data_ele_image_bar_witdth_on_mobile = ["400px","400px","400px","400px"]
-    data_ele_image_bar_above_on_mobile = ["0px","0px","0px","0px"]
-    data_ele_only_items_witdth_on_mobile = ["400px","400px","400px","400px"]
-    data_ele_image_bar_witdth_on_desktop = ["1200px","1200px","1200px","1200px"]
-    data_ele_image_bar_next_on_desktop = ["-1px","-1px","-1px","-1px"]
-    data_ele_only_items_witdth_on_desktop = ["1201px","600px","401px","301px"]
-    if(conf_image_height=="large"){
-        data_ele_image_bar_height_on_mobile = ["402px","804px","1206px","1608px"]
-        data_ele_only_items_height_on_mobile = ["402px","402px","402px","402px"] 
-        data_ele_image_bar_height_on_desktop = ["602px","602px","588px","442px"]
-        data_ele_only_items_height_on_desktop = ["602px","602px","588px","442px"] 
-    }else if (conf_image_height=="medium"){
-        data_ele_image_bar_height_on_mobile = ["402px","804px","1206px","1608px"]
-        data_ele_only_items_height_on_mobile = ["402px","402px","402px","402px"] 
-        data_ele_image_bar_height_on_desktop = ["460px","602px","588px","442px"]
-        data_ele_only_items_height_on_desktop = ["460px","602px","588px","442px"] 
-    }else if(conf_image_height=="small"){
-        data_ele_image_bar_height_on_mobile = ["402px","804px","1206px","1608px"]
-        data_ele_only_items_height_on_mobile = ["402px","402px","402px","402px"] 
-        data_ele_image_bar_height_on_desktop = ["352px","602px","588px","442px"]
-        data_ele_only_items_height_on_desktop = ["352px","602px","588px","442px"] 
-    }
+#@script 
+#    data_ele_image_bar_witdth_on_mobile = ["400px","400px","400px","400px"]
+#    data_ele_image_bar_above_on_mobile = ["0px","0px","0px","0px"]
+#    data_ele_only_items_witdth_on_mobile = ["400px","400px","400px","400px"]
+#    data_ele_image_bar_witdth_on_desktop = ["1200px","1200px","1200px","1200px"]
+#    data_ele_image_bar_next_on_desktop = ["-1px","-1px","-1px","-1px"]
+#    data_ele_only_items_witdth_on_desktop = ["1201px","600px","401px","301px"]
+#    if(conf_image_height=="large"){
+#        data_ele_image_bar_height_on_mobile = ["402px","804px","1206px","1608px"]
+#        data_ele_only_items_height_on_mobile = ["402px","402px","402px","402px"] 
+#        data_ele_image_bar_height_on_desktop = ["602px","602px","588px","442px"]
+#        data_ele_only_items_height_on_desktop = ["602px","602px","588px","442px"] 
+#    }else if (conf_image_height=="medium"){
+#        data_ele_image_bar_height_on_mobile = ["402px","804px","1206px","1608px"]
+#        data_ele_only_items_height_on_mobile = ["402px","402px","402px","402px"] 
+#        data_ele_image_bar_height_on_desktop = ["460px","602px","588px","442px"]
+#        data_ele_only_items_height_on_desktop = ["460px","602px","588px","442px"] 
+#    }else if(conf_image_height=="small"){
+#        data_ele_image_bar_height_on_mobile = ["402px","804px","1206px","1608px"]
+#        data_ele_only_items_height_on_mobile = ["402px","402px","402px","402px"] 
+#        data_ele_image_bar_height_on_desktop = ["352px","602px","588px","442px"]
+#        data_ele_only_items_height_on_desktop = ["352px","602px","588px","442px"] 
+#    }
 
 = Four Images Card =
-    | amount of any ${ele_only_items} should be 1 to 4
-    | amount of any ${ele_only_items_title} should be 0 to 4
-    | ${ele_only_items_hero} fulfil css background-position-y is ${conf_blocks_settings_alignment} by one-to-one mapping
-    | ${ele_only_items_hero} fulfil text is ${conf_blocks_settings_title} by one-to-one mapping
+    = Skeleton =
+        | amount of any ${ele_only_items} should be ${block_quantity}
+        | amount of any ${ele_only_items_title} should be ${block_title_quantity}
+    = Image =
+        @on desktop
+            | ${ele_only_items_hero} are aligned horizontally all 2px and next to each other with ~0px margin
+        @on mobile
+            | ${ele_only_items_hero} are aligned vertically all 2px and above each other with ~0px margin
+        @if ${conf_image_height == 'large'}
+            | ${ele_only_items_pic_height} fulfil height the value belike 200% of ${ele_only_items} width
+        @elseif ${conf_image_height == 'medium'}
+            | ${ele_only_items_pic_height} fulfil height the value belike 100% of ${ele_only_items} width
+        @elseif ${conf_image_height == 'small'}
+            | ${ele_only_items_pic_height} fulfil height the value belike 58% of ${ele_only_items} width
+        | ${ele_only_items_title} fulfil common pattern rules follow by ${css_check_ele_title}
+        | ${ele_only_items_title} fulfil text is ${block_title_list} by one-to-one mapping
+        | ${ele_only_items_hover_zoom} fulfil css background-position-y is ${block_alignment_list} by one-to-one mapping
 
-    @on mobile
-        = Skeleton =
-            ${ele_image_bar}:
-                width ${data_ele_image_bar_witdth_on_mobile[this.index]}
-                height ${data_ele_image_bar_height_on_mobile[this.index]}
-                centered all inside ${ele_card} 
-        = Image =
-            | ${ele_only_items} are aligned vertically above each other with ${data_ele_image_bar_above_on_mobile[this.index]} margin
-            | every ${ele_only_items} has width ${data_ele_only_items_witdth_on_mobile[this.index]}
-            | every ${ele_only_items} has height ${data_ele_only_items_height_on_mobile[this.index]}
 
-    @on desktop
-        = Skeleton =
-            ${ele_image_bar}:
-                width ${data_ele_image_bar_witdth_on_desktop[this.index]}
-                height ${data_ele_image_bar_height_on_desktop[this.index]}
-                centered all inside ${ele_card} 
-        = Image =
-            | ${ele_only_items} are aligned horizontally next to each other with ${data_ele_image_bar_next_on_desktop[this.index]} margin
-            | every ${ele_only_items} has width ${data_ele_only_items_witdth_on_desktop[this.index]}
-            | every ${ele_only_items} has height ${data_ele_only_items_height_on_desktop[this.index]}
 
+#
+#    @on mobile
+#        = Skeleton =
+#            ${ele_image_bar}:
+#                width ${data_ele_image_bar_witdth_on_mobile[this.index]}
+#                height ${data_ele_image_bar_height_on_mobile[this.index]}
+#                centered all inside ${ele_card} 
+#        = Image =
+#            | ${ele_only_items} are aligned vertically above each other with ${data_ele_image_bar_above_on_mobile[this.index]} margin
+#            | every ${ele_only_items} has width ${data_ele_only_items_witdth_on_mobile[this.index]}
+#            | every ${ele_only_items} has height ${data_ele_only_items_height_on_mobile[this.index]}
+#
+#    @on desktop
+#        = Skeleton =
+#            ${ele_image_bar}:
+#                width ${data_ele_image_bar_witdth_on_desktop[index]}
+#                height ${data_ele_image_bar_height_on_desktop[this.index]}
+#                centered all inside ${ele_card} 
+#        = Image =
+#            | ${ele_only_items} are aligned horizontally next to each other with ${data_ele_image_bar_next_on_desktop[this.index]} margin
+#            | every ${ele_only_items} has width ${data_ele_only_items_witdth_on_desktop[this.index]}
+#            | every ${ele_only_items} has height ${data_ele_only_items_height_on_desktop[this.index]}
+#
 
     # @for [${num_of_ele_only_items}] as index
     #     @on mobile
