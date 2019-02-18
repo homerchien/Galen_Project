@@ -1,0 +1,54 @@
+@import data/common-data.gspec
+@import data/footer-data.gspec
+@script properties/footer-properties.js
+
+= Images Text Card =
+    = Skeleton =
+        @on desktop
+            ${ele_content_container},${ele_copyright_container}:
+                width ${desktop_container_width_xl} 
+                centered horizontally inside ${ele_card} 
+            | ${ele_content_items} should be inside of ${ele_content_container} and divide in ${count(ele_content_items)} equally by 0 px fixed space
+
+        @on mobile
+            ${ele_content_container},${ele_copyright_container}:
+                width 100% of screen/width
+                centered horizontally inside ${ele_card} 
+            | ${ele_content_items} are aligned vertically all above each other with 30px margin
+        | ${ele_content_container} fulfil common pattern rules follow by ${css_check_content_container_gap_padding} 
+        | ${ele_copyright_container} fulfil common pattern rules follow by ${css_check_copyright_container_gap_padding} 
+
+    = Items =
+        @if ${conf_special_desc == ""}
+            
+
+#        @on desktop
+#            | ${ele_image} should be inside of ${ele_row} and take 50 % of its width
+#        @on mobile
+#            | ${ele_image} should be inside of ${ele_row} and take 100 % of its width after subtracting 30 px extra-margin
+#    = Text =
+#        @on desktop
+#            ${ele_text_title}:
+#                above ${ele_text_desc} 24px
+#        @on mobile
+#            ${ele_text_title}:
+#                above ${ele_text_desc} 20px
+#
+#        ${ele_text_title}:
+#            text is "${conf_settings_title}"
+#        ${ele_text_desc}:
+#            text is "${conf_settings_desc}"
+#        | ${ele_text_title} fulfil common pattern rules follow by ${css_check_ele_text_title}
+#        | ${ele_text_desc} fulfil common pattern rules follow by ${css_check_ele_text_desc}
+#
+#        @if ${conf_settings_button_label != ""}
+#            ${ele_text_btn}:
+#                text is "${conf_settings_button_label}"
+#                @on desktop
+#                    below ${ele_text_desc} 34 to 50 px
+#                    aligned vertically left ${ele_text_title}
+#                @on mobile
+#                    below ${ele_text_desc} 9 to 25 px
+#                    aligned vertically centered ${ele_text_title}
+#
+#

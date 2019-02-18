@@ -1,0 +1,68 @@
+@script ../galen-extras/custom-javascript-functions.js
+
+@objects
+    card        								[data-section-type="footer"]
+    	footer_content_container				.container.footer-content
+	        items-*                 			.footer__item
+	    footer_copyright_container				.container.footer-copyright__inner
+			footer_payment						.footer__payment
+				li-*							li
+			explanation							.dj-mce-view
+	footer_social								[data-section-type="footer"] .footer-social
+		title									.footer-column__title
+		icons-*									i
+	footer_menu									[data-section-type="footer"] .footer-menu
+		title									.footer-column__title
+	footer_info									[data-section-type="footer"] .footer-info
+		title									.footer-column__title
+		desc									.footer-info__desc
+	footer_newsletter							[data-section-type="footer"] .footer-newsletter
+		title									.footer-column__title
+		form									.footer-newsletter__form
+			input								.footer-newsletter__input-wrap
+			btn									.footer-newsletter__btn-wrap       
+
+@on *
+	@set
+		# element set
+		ele_card 							${"card"}
+		ele_content_container 				${"card.footer_content_container"}
+		ele_content_items 					${"card.footer_content_container.items-#"}
+		ele_copyright_container 			${"card.footer_copyright_container"}
+		ele_payment 						${"card.footer_copyright_container.footer_payment"}
+		ele_payment_items 					${"card.footer_copyright_container.footer_payment.li-#"}
+		ele_explanation 					${"card.footer_copyright_container.explanation"}
+		ele_social							${"footer_social"}
+		ele_social_title					${"footer_social.title"}
+		ele_social_icons					${"footer_social.icons-#"}
+		ele_menu							${"footer_menu"}
+		ele_menu_title						${"footer_menu.title"}
+		ele_info							${"footer_info"}
+		ele_info_title						${"footer_info.title"}
+		ele_info_desc						${"footer_info.desc"}
+		ele_newsletter						${"footer_newsletter"}
+		ele_newsletter_title				${"footer_newsletter.title"}
+		ele_newsletter_form					${"footer_newsletter.form"}
+		ele_newsletter_input				${"footer_newsletter.form.input"}
+		ele_newsletter_button				${"footer_newsletter.form.btn"}
+		
+
+		css_check_ele_text_desc     {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"left"}
+		css_check_ele_text_title    {"font-size":"30px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"left"}
+
+
+@on desktop
+	@set
+		css_check_ele_text_desc     {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"center"}
+		css_check_ele_text_title    {"font-size":"24px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"center"}
+		css_check_content_container_gap_padding			{"padding-top":"30px","padding-bottom":"30px","padding-left":"0px","padding-right":"0px"}
+		css_check_copyright_container_gap_padding		{"padding-top":"0px","padding-bottom":"0px","padding-left":"0px","padding-right":"0px"}
+@on mobile
+	@set
+		css_check_ele_text_desc     {"font-size":"16px","font-family":"Work Sans","color":"rgba(105, 114, 123, 1)","text-align":"center"}
+		css_check_ele_text_title    {"font-size":"24px","font-family":"Work Sans","color":"rgba(61, 66, 70, 1)","text-align":"center"}
+		css_check_content_container_gap_padding			{"padding-top":"15px","padding-bottom":"15px","padding-left":"25px","padding-right":"25px"}
+		css_check_copyright_container_gap_padding		{"padding-top":"0px","padding-bottom":"0px","padding-left":"15px","padding-right":"15px"}
+		# text_css					{"font-size":"16px","font-family":"Work Sansssss"}
+		# css_check_ele_text_title    ${updateJson(css_check_ele_text_title,text_css)}
+		

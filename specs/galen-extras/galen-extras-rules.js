@@ -37,7 +37,7 @@ function _ruleRenderedInTable(rule, itemPattern, columns, verticalMargin, horizo
  *
  *      | menuItem-* are rendered in 2 column table layout
  */
-rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout", function(objectName, parameters) {
+rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout", function (objectName, parameters) {
     _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), GEXTRAS_NO_MARGIN, GEXTRAS_NO_MARGIN);
 });
 
@@ -48,7 +48,7 @@ rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout", fu
  *
  *      | menuItem-* are rendered in 2 column table layout, with 0 to 4px margin
  */
-rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{margin} margin", function(objectName, parameters) {
+rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{margin} margin", function (objectName, parameters) {
     _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), parameters.margin, parameters.margin);
 });
 
@@ -60,7 +60,7 @@ rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, wit
  *
  *      | menuItem-* are rendered in 2 column table layout, with 0 to 4px vertical and 1px horizontal margins
  */
-rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{verticalMargin} vertical and %{horizontalMargin} horizontal margin", function(objectName, parameters) {
+rule("%{itemPattern} are rendered in %{columns: [0-9]+} column table layout, with %{verticalMargin} vertical and %{horizontalMargin} horizontal margin", function (objectName, parameters) {
     _ruleRenderedInTable(this, parameters.itemPattern, parseInt(columns), parameters.verticalMargin, parameters.horizontalMargin);
 });
 
@@ -91,27 +91,27 @@ function _applyRuleBodyForSingleElement(rule, parameters, appliesConditionCallba
     }
 }
 
-rule("if all %{objectPattern} are visible", function(objectName, parameters) {
-    _applyRuleBodyForAllElements(this, parameters, function(element) {
+rule("if all %{objectPattern} are visible", function (objectName, parameters) {
+    _applyRuleBodyForAllElements(this, parameters, function (element) {
         return element.isVisible();
     });
 });
 
 
-rule("if none of %{objectPattern} are visible", function(objectName, parameters) {
-    _applyRuleBodyForAllElements(this, parameters, function(element) {
+rule("if none of %{objectPattern} are visible", function (objectName, parameters) {
+    _applyRuleBodyForAllElements(this, parameters, function (element) {
         return !element.isVisible();
     });
 });
 
-rule("if any of %{objectPattern} is visible", function(objectName, parameters) {
-    _applyRuleBodyForSingleElement(this, parameters, function(element) {
+rule("if any of %{objectPattern} is visible", function (objectName, parameters) {
+    _applyRuleBodyForSingleElement(this, parameters, function (element) {
         return element.isVisible();
     });
 });
 
 
-rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin from %{sideAName} and %{sideBName}", function(objectName, parameters) {
+rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin from %{sideAName} and %{sideBName}", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     if (items.length > 0) {
         this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " " + parameters.margin + " " + parameters.sideAName]);
@@ -127,7 +127,7 @@ rule("%{objectPattern} sides are inside %{containerObject} with %{margin} margin
 });
 
 
-rule("%{objectPattern} sides are vertically inside %{containerObject}", function(objectName, parameters) {
+rule("%{objectPattern} sides are vertically inside %{containerObject}", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     if (items.length > 0) {
         this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " -1 to 1 px top"]);
@@ -142,7 +142,7 @@ rule("%{objectPattern} sides are vertically inside %{containerObject}", function
     }
 });
 
-rule("%{objectPattern} sides are vertically inside %{containerObject} with %{margin} margin", function(objectName, parameters) {
+rule("%{objectPattern} sides are vertically inside %{containerObject} with %{margin} margin", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     if (items.length > 0) {
         this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " " + parameters.margin + " top"]);
@@ -158,7 +158,7 @@ rule("%{objectPattern} sides are vertically inside %{containerObject} with %{mar
 });
 
 
-rule("%{objectPattern} sides are horizontally inside %{containerObject}", function(objectName, parameters) {
+rule("%{objectPattern} sides are horizontally inside %{containerObject}", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     if (items.length > 0) {
         this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " -1 to 1 px left"]);
@@ -174,7 +174,7 @@ rule("%{objectPattern} sides are horizontally inside %{containerObject}", functi
 });
 
 
-rule("%{objectPattern} sides are horizontally inside %{containerObject} with %{margin} margin", function(objectName, parameters) {
+rule("%{objectPattern} sides are horizontally inside %{containerObject} with %{margin} margin", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     if (items.length > 0) {
         this.addObjectSpecs(items[0].name, ["inside " + parameters.containerObject + " " + parameters.margin + " left"]);
@@ -193,13 +193,13 @@ rule("%{objectPattern} sides are horizontally inside %{containerObject} with %{m
 // By Homer
 // eg.
 //    | ${ele_only_items_hero} fulfil css background-position-y is ${conf_blocks_settings_alignment} by one-to-one mapping
-rule("%{objectListA} %{verb: is|has|fulfil} %{spec} %{objectListB} by one-to-one mapping", function(objectName, parameters) {
+rule("%{objectListA} %{verb: is|has|fulfil} %{spec} %{objectListB} by one-to-one mapping", function (objectName, parameters) {
     var itemsA = findAll(parameters.objectListA);
     var itemsB = JSON.parse(parameters.objectListB);
 
     if (itemsA.length > 0) {
         for (var i = 0; i < itemsA.length; i++) {
-            this.addObjectSpecs(itemsA[i].name, [  parameters.spec + " \"" + itemsB[i] +"\""]);
+            this.addObjectSpecs(itemsA[i].name, [parameters.spec + " \"" + itemsB[i] + "\""]);
         }
     } else {
         throw new Error("Couldn't find any items matching " + parameters.objectListA + "&" + parameters.objectListB);
@@ -208,60 +208,16 @@ rule("%{objectListA} %{verb: is|has|fulfil} %{spec} %{objectListB} by one-to-one
 
 // eg.
 //    | ${ele_text_desc} fulfil common pattern rules follow by ${text_title_list_check}
-rule("%{objectPattern} fulfil common pattern rules follow by %{rulesValueJson}", function(objectName, parameters) {
+rule("%{objectPattern} fulfil common pattern rules follow by %{rulesValueJson}", function (objectName, parameters) {
     var items = findAll(parameters.objectPattern);
     var valueJson = JSON.parse(parameters.rulesValueJson);
     var SpecStatementList = [];
-    if(valueJson.hasOwnProperty("font-size")){
-        SpecStatementList.push("css font-size is " + "\"" + valueJson["font-size"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("font-family")){
-        SpecStatementList.push("css font-family contains " + "\"" + valueJson["font-family"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("color")){
-        SpecStatementList.push("css color is " + "\"" + valueJson["color"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("text-align")){
-        SpecStatementList.push("css text-align is " + "\"" + valueJson["text-align"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("font-weight")){
-        SpecStatementList.push("css font-weight is " + "\"" + valueJson["font-weight"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("line-height")){
-        SpecStatementList.push("css line-height is " + "\"" + valueJson["line-height"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("text-size-adjust")){
-        SpecStatementList.push("css text-size-adjust is " + "\"" + valueJson["text-size-adjust"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("letter-spacing")){
-        SpecStatementList.push("css letter-spacing is " + "\"" + valueJson["letter-spacing"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("background-color")){
-        SpecStatementList.push("css background-color is " + "\"" + valueJson["background-color"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("margin-top")){
-        SpecStatementList.push("css margin-top is " + "\"" + valueJson["margin-top"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("margin-bottom")){
-        SpecStatementList.push("css margin-bottom is " + "\"" + valueJson["margin-bottom"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("margin-left")){
-        SpecStatementList.push("css margin-left is " + "\"" + valueJson["margin-left"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("margin-right")){
-        SpecStatementList.push("css margin-right is " + "\"" + valueJson["margin-right"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("padding-top")){
-        SpecStatementList.push("css padding-top is " + "\"" + valueJson["padding-top"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("padding-bottom")){
-        SpecStatementList.push("css padding-bottom is " + "\"" + valueJson["padding-bottom"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("padding-left")){
-        SpecStatementList.push("css padding-left is " + "\"" + valueJson["padding-left"] +"\"");
-    }
-    if(valueJson.hasOwnProperty("padding-right")){
-        SpecStatementList.push("css padding-right is " + "\"" + valueJson["padding-right"] +"\"");
+    for (var key in valueJson) {
+        if (valueJson.hasOwnProperty("font-family")) {
+            SpecStatementList.push("css " + key + " contains " + "\"" + valueJson[key] + "\"");
+        } else {
+            SpecStatementList.push("css " + key + " is " + "\"" + valueJson[key] + "\"");
+        }
     }
     // System.out.println(JSON.stringify(SpecStatementList));
     if (items.length > 0) {
@@ -275,7 +231,7 @@ rule("%{objectPattern} fulfil common pattern rules follow by %{rulesValueJson}",
 
 // eg.
 //    | ${ele_only_items_title} fulfil text is the value of settings.title from ${arrayToString(conf_blocks)} by one-to-one mapping
-rule("%{objectListA} %{verb: is|has|fulfil} %{spec} the value of %{locator} from %{configArray} by one-to-one mapping", function(objectName, parameters) {
+rule("%{objectListA} %{verb: is|has|fulfil} %{spec} the value of %{locator} from %{configArray} by one-to-one mapping", function (objectName, parameters) {
     var itemsA = findAll(parameters.objectListA);
     // var configArray_ = parameters.configArray;
     var configArray_ = JSON.parse(parameters.configArray);
@@ -286,12 +242,12 @@ rule("%{objectListA} %{verb: is|has|fulfil} %{spec} the value of %{locator} from
     if (itemsA.length > 0) {
         for (var i = 0; i < itemsA.length; i++) {
             var target = configArray_[i];
-            for(var j in keyList){
+            for (var j in keyList) {
                 // System.out.println(String(keyList[j]));
                 target = target[keyList[j]];
             }
             // System.out.println(target);
-            this.addObjectSpecs(itemsA[i].name, [  parameters.spec + " \"" + target +"\""]);
+            this.addObjectSpecs(itemsA[i].name, [parameters.spec + " \"" + target + "\""]);
         }
     } else {
         throw new Error("Couldn't find any items matching " + parameters.objectListA + "&" + configArray_);
