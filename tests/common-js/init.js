@@ -10,14 +10,14 @@ var TEST_USER = {
 $galen.settings.website = "https://homer.myshoplaza.com";
 
 
-// local test
+// local exec test
 $galen.registerDevice("mobile", inSingleBrowser("mobile emulation", "414x736", ["mobile"]));
 $galen.registerDevice("desktop", inSingleBrowser("desktop emulation", "1440x900", ["desktop"]));
 
 // Grid test
 // $galen.registerDevices(loadGridDevices("browserstack-devices.json", "http://" + System.getProperty("browserstack.username") + ":" + System.getProperty("browserstack.key") + "@hub.browserstack.com/wd/hub"));
 
-// browserstack test
+// browserstack exec test
 // $galen.registerDevice("desktop", inSeleniumGrid("http://" + System.getProperty("browserstack.username") + ":" + System.getProperty("browserstack.key") + "@hub.browserstack.com/wd/hub",
 //     "desktop real machine", ["desktop"], {
 //     	"size": "1440×900",
@@ -41,7 +41,7 @@ $galen.registerDevice("desktop", inSingleBrowser("desktop emulation", "1440x900"
 // }));
 
 
-// saucelabs test
+// saucelabs exec test
 // $galen.registerDevice("desktop", inSeleniumGrid("http://" + System.getProperty("saucelabs.username") + ":" + System.getProperty("saucelabs.key") +"@ondemand.saucelabs.com:80/wd/hub",
 //     "desktop real machine", ["desktop"], {
 //     	"size": "1440×900",
