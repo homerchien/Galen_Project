@@ -113,3 +113,9 @@ galen test tests/ --htmlreport reports
 ### 5.2 用例执行流程
 1. 执行tests中所有用例
 2. *.test.js文件，加载commons.js与init.js(init.js注册执行设备)，并执行suite
+
+### 5.3 如何debug
+```bash
+# 通过print语句debug
+System.out.println(JSON.stringify(SpecStatementList));
+```
